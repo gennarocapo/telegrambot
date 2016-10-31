@@ -1,7 +1,7 @@
 <?php
 
 // PARAMETRI DA MODIFICARE
-$WEBHOOK_URL = 'https://vodafonebot.herokuapp.com/execute.php';
+$WEBHOOK_URL = 'https://telegrambot.herokuapp.com/execute.php';
 $BOT_TOKEN = '233419261:AAHOKyL3THo1CRuLxGxnB9QyCYiNGx267XY';
 
 // NON APPORTARE MODIFICHE NEL CODICE SEGUENTE
