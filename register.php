@@ -1,7 +1,7 @@
 <?php
 
 // PARAMETRI DA MODIFICARE
-$WEBHOOK_URL = 'https://telegrambot.herokuapp.com/execute.php';
+$WEBHOOK_URL = 'https://gigabot.herokuapp.com/execute.php';
 $BOT_TOKEN = '229868142:AAGO_M5QbEEIqXkBVv-wlqkRTlyk0SQ0huI';
 
 // NON APPORTARE MODIFICHE NEL CODICE SEGUENTE
