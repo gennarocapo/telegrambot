@@ -34,21 +34,21 @@ elseif($text=="si")
 	$response = "Bene, segui sul link http://www.google.com per partire";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
-	$parameters["reply_markup"] = '';
+	$parameters["reply_markup"] = null;
 }
 elseif($text=="no")
 {
 	$response = "vafanculo";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
-	$parameters["reply_markup"] = '';
+	$parameters["reply_markup"] = null;
 }
 else
 {
 	$response = "Comando non valido!";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
-	$parameters["reply_markup"] = '';
+	$parameters["reply_markup"] = null;
 }
 
 
