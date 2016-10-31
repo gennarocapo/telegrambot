@@ -24,9 +24,10 @@ $response = '';
 
 if(strpos($text, "/start") === 0 || $text=="ciao")
 {
-        $parameters["reply_markup"] = '{ "keyboard": [["uno"], ["due"], ["tre"], ["quattro"]], "one_time_keyboard": false}';
 	$response = "Ciao $firstname, benvenuto! Cominciamo il nostro percorso digitale. Clicca sul link http://www.google.com per partire";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
+	$parameters["method"] = "sendMessage";
+	$parameters["reply_markup"] = '{ "keyboard": [["uno"], ["due"], ["tre"], ["quattro"]], "one_time_keyboard": false}';
 }
 elseif($text=="domanda 1")
 {
@@ -45,5 +46,5 @@ else
 }
 
 
-$parameters["method"] = "sendMessage";
+
 echo json_encode($parameters);
