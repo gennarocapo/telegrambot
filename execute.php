@@ -24,22 +24,26 @@ $response = '';
 
 if(strpos($text, "/start") === 0 || $text=="ciao")
 {
-	$btn = new InlineKeyboardButton(['text' => 'Example text','url' => 'http://example.org' ]);
+	$keyboard = ['inline_keyboard' => [[['text' =>  'myText', 'callback_data' => 'myCallbackText']]]];
+        $parameters["reply_markup"] = json_encode($keyboard, true);
 	$response = "Ciao $firstname, benvenuto! Cominciamo il nostro percorso digitale. Clicca sul link http://www.google.com per partire";
 }
 elseif($text=="domanda 1")
 {
 	$response = "risposta 1";
+	$parameters = array('chat_id' => $chatId, "text" => $response);
 }
 elseif($text=="domanda 2")
 {
 	$response = "risposta 2";
+	$parameters = array('chat_id' => $chatId, "text" => $response);
 }
 else
 {
 	$response = "Comando non valido!";
+	$parameters = array('chat_id' => $chatId, "text" => $response);
 }
 
-$parameters = array('chat_id' => $chatId, "text" => $response);
+
 $parameters["method"] = "sendMessage";
 echo json_encode($parameters);
