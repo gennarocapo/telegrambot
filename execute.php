@@ -24,19 +24,19 @@ $response = '';
 
 if(strpos($text, "/start") === 0 || $text=="ciao")
 {
-	$response = "Ciao $firstname, benvenuto! Cominciamo il nostro percorso digitale. Clicca sul link http://www.google.com per partire";
+	$response = "Ciao $firstname, benvenuto! Sei pronto per partire col percorso digitale? ";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
-	$parameters["reply_markup"] = '{ "keyboard": [["uno"], ["due"], ["tre"], ["quattro"]], "one_time_keyboard": false}';
+	$parameters["reply_markup"] = '{ "keyboard": [["si"], ["no"]], "one_time_keyboard": false}';
 }
-elseif($text=="domanda 1")
+elseif($text=="si")
 {
-	$response = "risposta 1";
+	$response = "Bene, segui sul link http://www.google.com per partire";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 }
-elseif($text=="domanda 2")
+elseif($text=="no")
 {
-	$response = "risposta 2";
+	$response = "vafanculo";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 }
 else
