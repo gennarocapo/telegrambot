@@ -24,8 +24,7 @@ $response = '';
 
 if(strpos($text, "/start") === 0 || $text=="ciao")
 {
-	$keyboard = ['inline_keyboard' => [[['text' =>  'myText', 'callback_data' => 'myCallbackText']]]];
-        $parameters["reply_markup"] = json_encode($keyboard, true);
+        $parameters["reply_markup"] = '{ "keyboard": [["uno"], ["due"], ["tre"], ["quattro"]], "one_time_keyboard": false}';
 	$response = "Ciao $firstname, benvenuto! Cominciamo il nostro percorso digitale. Clicca sul link http://www.google.com per partire";
 }
 elseif($text=="domanda 1")
