@@ -24,6 +24,7 @@ $response = '';
 
 if(strpos($text, "/start") === 0 || $text=="ciao")
 {
+	$btn = new InlineKeyboardButton(['text' => 'Example text','url' => 'http://example.org' ]);
 	$response = "Ciao $firstname, benvenuto! Cominciamo il nostro percorso digitale. Clicca sul link http://www.google.com per partire";
 }
 elseif($text=="domanda 1")
