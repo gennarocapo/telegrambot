@@ -27,28 +27,25 @@ if(strpos($text, "/start") === 0 || $text=="ciao")
 	$response = "Ciao $firstname, benvenuto! Sei pronto per partire col percorso digitale? ";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
-	$parameters["reply_markup"] = '{ "keyboard": [["si"], ["no"]], "one_time_keyboard": false}';
+	$parameters["reply_markup"] = '{ "keyboard": [["si"], ["no"]], "one_time_keyboard": true}';
 }
 elseif($text=="si")
 {
 	$response = "Bene, segui sul link http://www.google.com per partire";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
-	$parameters["reply_markup"] = null;
 }
 elseif($text=="no")
 {
 	$response = "vafanculo";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
-	$parameters["reply_markup"] = null;
 }
 else
 {
 	$response = "Comando non valido!";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
-	$parameters["reply_markup"] = null;
 }
 
 
