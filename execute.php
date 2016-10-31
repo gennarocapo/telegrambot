@@ -24,7 +24,7 @@ $response = '';
 
 if(strpos($text, "/start") === 0 || $text=="ciao")
 {
-	$response = "Ciao $firstname, benvenuto!";
+	$response = "Ciao $firstname, benvenuto! Cominciamo il nostro percorso digitale. Clicca sul link http://www.google.com per partire";
 }
 elseif($text=="domanda 1")
 {
