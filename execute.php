@@ -22,7 +22,7 @@ header("Content-Type: application/json");
 
 $response = '';
 
-if(strpos($text, "/start") === 0 || $text=="ciao")
+if(strpos($text, "/start") === 0 || $text=="ciao" || $text=="no")
 {
 	$response = "Ciao $firstname, benvenuto! Sei pronto per partire col percorso digitale? ";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
@@ -35,9 +35,9 @@ elseif($text=="si")
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
 }
-elseif($text=="no")
+elseif($text=="")
 {
-	$response = "vafanculo";
+	$response = "";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
 }
