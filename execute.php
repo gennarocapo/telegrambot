@@ -33,7 +33,7 @@ elseif($text=="si")
 	$response = "Bene, cominciamo.. Quanti Mi Piace ha la pagina Vodafone su Facebook?";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
-	$parameters["reply_markup"] = '{ "keyboard": [[$secondAnswerReal], [$secondAnswerFake1],[$secondAnswerFake2]], "one_time_keyboard": true}';
+	$parameters["reply_markup"] = '{ "keyboard": [$secondAnswerReal, $secondAnswerFake1,$secondAnswerFake2], "one_time_keyboard": true}';
 }
 elseif($text==$secondAnswerReal)
 {
