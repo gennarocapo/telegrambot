@@ -28,9 +28,10 @@ $text = trim($text);
 $text = strtolower($text);
 header("Content-Type: application/json");
 $response = '';
-$secondAnswerReal = "1.676M";
-$secondAnswerFake1 = "1.8M";
-$secondAnswerFake2 = "1.02M";
+$secondAnswerReal = ">1.5M";
+$secondAnswerFake1 = "<1M";
+$secondAnswerFake2 = ">2M";
+$secondAnswerFake3 = ">5M";
 if(strpos($text, "/start") === 0 || $text=="ciao" || $text=="cia" || $text=="hello" || $text=="hi" || $text=="no")
 {
 	$response = "Ciao $firstname, benvenuto! Sei pronto per partire col percorso digitale? ";
@@ -43,7 +44,14 @@ elseif($text=="si")
 	$response = "Bene, cominciamo.. Secondo te quanti Mi Piace ha la pagina Vodafone su Facebook?";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
-	$parameters["reply_markup"] = '{ "keyboard": [["1.676M"],["1.33M"],["2M"]], "one_time_keyboard": true}';
+	$parameters["reply_markup"] = '{ "keyboard": [[">1.5M"],["<1M"],[">2M"]], "one_time_keyboard": true}';
+}
+elseif($text==$secondAnswerFake1 || $text==$secondAnswerFake2 || $text==$secondAnswerFake3)
+{
+	$response = "Putroppo no,riproviamo..Secondo te quanti Mi Piace ha la pagina Vodafone su Facebook?";
+	$parameters = array('chat_id' => $chatId, "text" => $response);
+	$parameters["method"] = "sendMessage";
+	$parameters["reply_markup"] = '{ "keyboard": [[">1.5M"],["<1M"],[">2M"],[">5M"]], "one_time_keyboard": true}';
 }
 elseif($text==strtolower($secondAnswerReal))
 {
@@ -73,11 +81,12 @@ elseif($text==strtolower($secondAnswerReal))
 	  $Windlikes = $json3_output->fan_count;
 	   
 
-	$response = "Esatto, la pagina Vodafone attualmente si classifica al secondo posto tra le Telco in Italia per numero di Mi Piace. Queste le prime tre posizioni\nTim: " . number_format($Timlikes) . "\nVodafone: " . number_format($Vodafonelikes) . "\nWind: " . number_format($Windlikes) . "\n";
+	$response = "Esatto, la pagina Vodafone attualmente si classifica al secondo posto tra le Telco in Italia per numero di Mi Piace.\n Queste al momento sono le prime tre posizioni\nTim: " . number_format($Timlikes) . "\nVodafone: " . number_format($Vodafonelikes) . "\nWind: " . number_format($Windlikes) . "\n";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
+	$parameters["reply_markup"] = '{ "keyboard": [["Prosegui"]], "one_time_keyboard": true}';
 }
-elseif($text="OK")
+elseif($text="Prosegui")
 {
 	 $TwitterSentimentAnalysis = new TwitterSentimentAnalysis("e16265e25f400c107e217ca3ba3520c3","89UEqupgMeygd721YbHwZ1DS5","GxlPEzEYTzXItnpru7E7JZw1cjuA4BkiDBMXDULkIDs2TzhPYF","17757558-1jlw4zfBLHJ74o9K4Dn7ULEW8SboHdPFdLAsHjtt9","pNf3nwMeDjonL5yPWc5h05GgvkOmuSWjbgq0TkHwMQaFU");
     //Search Tweets parameters as described at https://dev.twitter.com/docs/api/1.1/get/search/tweets
