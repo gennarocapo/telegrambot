@@ -66,7 +66,7 @@ class TwitterSentimentAnalysis {
         
         $results=array();
         foreach($tweets['statuses'] as $tweet) { //foreach of the tweets that we received
-            if(isset($tweet['metadata']['iso_language_code']) && $tweet['metadata']['iso_language_code']=='en') { //perform sentiment analysis only for the English Tweets
+            if(isset($tweet['metadata']['iso_language_code']) && $tweet['metadata']['iso_language_code']=='it') { //perform sentiment analysis only for the English Tweets
                 $sentiment=$DatumboxAPI->TwitterSentimentAnalysis($tweet['text']); //call Datumbox service to get the sentiment
                 
                 if($sentiment!=false) { //if the sentiment is not false, the API call was successful.
