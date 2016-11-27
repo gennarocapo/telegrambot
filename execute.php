@@ -32,6 +32,7 @@ $secondAnswerReal = ">1.5M";
 $secondAnswerFake1 = "<1M";
 $secondAnswerFake2 = ">2M";
 $secondAnswerFake3 = ">5M";
+$sentimentParola= "@vodafoneit";
 if(strpos($text, "/start") === 0 || $text=="ciao" || $text=="cia" || $text=="hello" || $text=="hi" || $text=="no")
 {
 	$response = "Ciao $firstname, benvenuto! Sei pronto per partire col percorso digitale? ";
@@ -81,17 +82,43 @@ elseif($text==strtolower($secondAnswerReal))
 	  $Windlikes = $json3_output->fan_count;
 	   
 
-	$response = "Esatto, la pagina Vodafone attualmente si classifica al secondo posto tra le Telco in Italia per numero di Mi Piace.\n Queste al momento sono le prime tre posizioni\nTim: " . number_format($Timlikes) . "\nVodafone: " . number_format($Vodafonelikes) . "\nWind: " . number_format($Windlikes) . "\n";
+	$response = "Esatto, la pagina Vodafone attualmente si classifica al secondo posto tra le Telco in Italia per numero di Mi Piace.\n Queste sono le prime tre posizioni in tempo reale.\nTim: " . number_format($Timlikes) . "\nVodafone: " . number_format($Vodafonelikes) . "\nWind: " . number_format($Windlikes) . "\nSarà lo stesso anche su Twitter? Clicca per scoprirlo";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
 	$parameters["reply_markup"] = '{ "keyboard": [["Prosegui"]], "one_time_keyboard": true}';
 }
-elseif($text="Prosegui")
+elseif($text=="Prosegui"){
+	$response = "Scegli un hashtag da cercare su twitter";
+	$parameters = array('chat_id' => $chatId, "text" => $response);
+	$parameters["method"] = "sendMessage";
+	$parameters["reply_markup"] = '{ "keyboard": [["rete4gvodafone"],["vodafonetv"],["vodafoneit"]], "one_time_keyboard": true}';
+	
+}
+elseif($text=="rete4gvodafone" || $text=="vodafoneit" || $text=="vodafonetv" )
 {
+	$sentimentParola = $text; 
+	$url = 'https://api.twitter.com/1.1/search/tweets.json';
+	$requestMethod = 'GET';
+	$getfield = '?q=#" . $text . "&result_type=recent';
+
+	// Perform the request
+	$twitter = new TwitterAPIExchange($settings);
+	$twres="";
+	$twres= $twitter->setGetfield($getfield)
+		     ->buildOauth($url, $requestMethod)
+		     ->performRequest();
+	 $response ="Gli ultimi " . sizeof($results) ." risultati della parola " .$text . " sono:\n" . $risultati;
+        $parameters = array('chat_id' => $chatId, "text" => $response);
+	$parameters["method"] = "sendMessage";
+	$parameters["reply_markup"] = '{ "keyboard": [["Avanti"]], "one_time_keyboard": true}';
+}
+elseif($text=="Avanti")
+{
+	
 	 $TwitterSentimentAnalysis = new TwitterSentimentAnalysis("e16265e25f400c107e217ca3ba3520c3","89UEqupgMeygd721YbHwZ1DS5","GxlPEzEYTzXItnpru7E7JZw1cjuA4BkiDBMXDULkIDs2TzhPYF","17757558-1jlw4zfBLHJ74o9K4Dn7ULEW8SboHdPFdLAsHjtt9","pNf3nwMeDjonL5yPWc5h05GgvkOmuSWjbgq0TkHwMQaFU");
     //Search Tweets parameters as described at https://dev.twitter.com/docs/api/1.1/get/search/tweets
     $twitterSearchParams=array(
-        'q'=>$text,
+        'q'=>$sentimentParola,
         'lang'=>'en',
         'count'=>3,
     );
@@ -101,8 +128,7 @@ elseif($text="Prosegui")
          foreach($results as $tweet) {
 	     $risultati= $risultati . "- Sentiment: " . $tweet['sentiment'] . "\nTweet: " . $tweet['text'] .  "\n\n";
 	 }
-	
-	 $response ="Gli ultimi " . sizeof($results) ." risultati della parola " .$text . " sono:\n" . $risultati;
+	 $response ="Posso anche calcolare il sentiment della parola che hai ricercato. Gli ultimi " . sizeof($results) . " sono:\n" . $risultati;
         $parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
 }
