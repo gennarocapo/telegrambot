@@ -60,10 +60,10 @@ elseif($text==strtolower($secondAnswerReal))
 	  $json_url ='https://graph.facebook.com/vodafoneit?access_token=1361949993817552|b4c680b656602a4a697f45d7d0cf790e&fields=fan_count';
 	  $json = file_get_contents($json_url);
           $json_output = json_decode($json);
-  $json1_url ='https://graph.facebook.com/TimOfficialPage?access_token=1361949993817552|b4c680b656602a4a697f45d7d0cf790e&fields=fan_count';
+  	  $json1_url ='https://graph.facebook.com/TimOfficialPage?access_token=1361949993817552|b4c680b656602a4a697f45d7d0cf790e&fields=fan_count';
 	  $json1 = file_get_contents($json1_url);
           $json1_output = json_decode($json1);
-$json3_url ='https://graph.facebook.com/Wind?access_token=1361949993817552|b4c680b656602a4a697f45d7d0cf790e&fields=fan_count';
+          $json3_url ='https://graph.facebook.com/Wind?access_token=1361949993817552|b4c680b656602a4a697f45d7d0cf790e&fields=fan_count';
 	  $json3 = file_get_contents($json3_url);
           $json3_output = json_decode($json3);
 
@@ -73,8 +73,7 @@ $json3_url ='https://graph.facebook.com/Wind?access_token=1361949993817552|b4c68
 	$Windlikes = $json3_output->fan_count;
 	   
 
-	$response = "Esatto, la pagina Vodafone attualmente si classifica al secondo posto tra le Telco in Italia per numero di Mi Piace. Queste le prime tre posizioni\n" .
-	 "Tim: " . number_format($Timlikes) . "\nVodafone: " .number_format($Vodafonelikes) "\nWind: " . number_format($Windlikes) . "\n";
+	$response = "Esatto, la pagina Vodafone attualmente si classifica al secondo posto tra le Telco in Italia per numero di Mi Piace. Queste le prime tre posizioni\nTim: " . number_format($Timlikes) . "\nVodafone: " . number_format($Vodafonelikes) "\nWind: " . number_format($Windlikes) . "\n";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
 }
