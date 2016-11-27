@@ -57,8 +57,15 @@ elseif($text==strtolower($secondAnswerReal))
           $data = json_decode($follow_count, true);
           $followers_count=$data[0]['user']['followers_count'];
           
-	$response = "Esatto, la pagina Vodafone attualmente si classifica al secondo posto tra le Telco in Italia per numero di Mi Piace, subito dietro Tim con piu di 2M.
-	 I follower di tim sono in tutto: " . number_format($followers_count);
+	  $json_url ='https://graph.facebook.com/vodafoneit?access_token=1361949993817552|b4c680b656602a4a697f45d7d0cf790e';
+	  $json = file_get_contents($json_url);
+          $json_output = json_decode($json);
+
+
+               $Vodafonelikes = $json_output->likes;
+
+	$response = "Esatto, la pagina Vodafone attualmente si classifica al secondo posto tra le Telco in Italia per numero di Mi Piace. Queste le prime tre posizioni\n":
+	 I follower di tim sono in tutto: " . number_format($Vodafonelikes);
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
 }
