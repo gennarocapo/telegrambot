@@ -21,8 +21,12 @@ $text = strtolower($text);
 header("Content-Type: application/json");
 
 $response = '';
+$secondAnswerReal = '1.676M';
+$secondAnswerFake1 = '1.8M';
+$secondAnswerFake2 = '1.02M';
 
-if(strpos($text, "/start") === 0 || $text=="ciao" || $text=="no")
+
+if(strpos($text, "/start") === 0 || $text=="ciao" || $text=="cia" || $text=="hello" || $text=="hi" || $text=="no")
 {
 	$response = "Ciao $firstname, benvenuto! Sei pronto per partire col percorso digitale? ";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
@@ -31,13 +35,14 @@ if(strpos($text, "/start") === 0 || $text=="ciao" || $text=="no")
 }
 elseif($text=="si")
 {
-	$response = "Bene, segui sul link http://www.google.com per partire";
+	$response = "Bene, cominciamo.. Quanti Mi Piace ha la pagina Vodafone su Facebook?";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
+	$parameters["reply_markup"] = '{ "keyboard": [[$secondAnswerReal], [$secondAnswerFake1],[$secondAnswerFake2]], "one_time_keyboard": true}';
 }
-elseif($text=="")
+elseif($text==$secondAnswerReal)
 {
-	$response = "";
+	$response = "Esatto, la pagina Vodafone attualmente si classifica al secondo posto tra le Telco in Italia per numero di Mi Piace, subito dietro Tim con piu di 2M";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
 }
