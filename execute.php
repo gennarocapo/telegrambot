@@ -1,4 +1,4 @@
-<?php
+2<?php
 
 $content = file_get_contents("php://input");
 $update = json_decode($content, true);
@@ -18,9 +18,9 @@ $text = trim($text);
 $text = strtolower($text);
 header("Content-Type: application/json");
 $response = '';
-$secondAnswerReal = '1.676M';
-$secondAnswerFake1 = '1.8M';
-$secondAnswerFake2 = '1.02M';
+$secondAnswerReal = "1.676M";
+$secondAnswerFake1 = "1.8M";
+$secondAnswerFake2 = "1.02M";
 if(strpos($text, "/start") === 0 || $text=="ciao" || $text=="cia" || $text=="hello" || $text=="hi" || $text=="no")
 {
 	$response = "Ciao $firstname, benvenuto! Sei pronto per partire col percorso digitale? ";
@@ -35,7 +35,7 @@ elseif($text=="si")
 	$parameters["method"] = "sendMessage";
 	$parameters["reply_markup"] = '{ "keyboard": [["1.676M"],["1.33M"]], "one_time_keyboard": true}';
 }
-elseif($text===$secondAnswerReal)
+elseif($text=="1.676M")
 {
 	$response = "Esatto, la pagina Vodafone attualmente si classifica al secondo posto tra le Telco in Italia per numero di Mi Piace, subito dietro Tim con piu di 2M";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
