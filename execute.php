@@ -68,7 +68,7 @@ elseif ($text=="rete4g")
     //Search Tweets parameters as described at https://dev.twitter.com/docs/api/1.1/get/search/tweets
     $twitterSearchParams=array(
         'q'=>$text,
-        'lang'=>'en',
+        'lang'=>'it',
         'count'=>3,
     );
     $results=$TwitterSentimentAnalysis->sentimentAnalysis($twitterSearchParams);
