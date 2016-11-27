@@ -35,7 +35,7 @@ elseif($text=="si")
 	$parameters["method"] = "sendMessage";
 	$parameters["reply_markup"] = '{ "keyboard": [["1.676M"],["1.33M"]], "one_time_keyboard": true}';
 }
-elseif($text==$secondAnswerReal)
+elseif($text===$secondAnswerReal)
 {
 	$response = "Esatto, la pagina Vodafone attualmente si classifica al secondo posto tra le Telco in Italia per numero di Mi Piace, subito dietro Tim con piu di 2M";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
