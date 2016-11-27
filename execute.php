@@ -40,7 +40,7 @@ if(strpos($text, "/start") === 0 || $text=="ciao" || $text=="cia" || $text=="hel
 }
 elseif($text=="si")
 {
-	$response = "Bene, cominciamo.. Quanti Mi Piace ha la pagina Vodafone su Facebook?";
+	$response = "Bene, cominciamo.. Secondo te quanti Mi Piace ha la pagina Vodafone su Facebook?";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
 	$parameters["reply_markup"] = '{ "keyboard": [["1.676M"],["1.33M"]], "one_time_keyboard": true}';
@@ -58,7 +58,7 @@ elseif($text==strtolower($secondAnswerReal))
           $followers_count=$data[0]['user']['followers_count'];
           
 	$response = "Esatto, la pagina Vodafone attualmente si classifica al secondo posto tra le Telco in Italia per numero di Mi Piace, subito dietro Tim con piu di 2M.
-	 I follower di tim sono in tutto: " . $followers_count;
+	 I follower di tim sono in tutto: " . number_format($followers_count);
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
 }
