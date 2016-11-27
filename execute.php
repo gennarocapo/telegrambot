@@ -1,6 +1,6 @@
 <?php
  require_once('TwitterAPIExchange.php'); //get it from https://github.com/J7mbo/twitter-api-php
-
+include_once('TwitterSentimentAnalysis.php');
     /** Set access tokens here - see: https://dev.twitter.com/apps/ **/
     $settings = array(
         'oauth_access_token' => "17757558-1jlw4zfBLHJ74o9K4Dn7ULEW8SboHdPFdLAsHjtt9",
@@ -60,6 +60,23 @@ elseif($text==strtolower($secondAnswerReal))
 	$response = "Esatto, la pagina Vodafone attualmente si classifica al secondo posto tra le Telco in Italia per numero di Mi Piace, subito dietro Tim con piu di 2M.
 	 I follower di tim sono in tutto: " . $followers_count;
 	$parameters = array('chat_id' => $chatId, "text" => $response);
+	$parameters["method"] = "sendMessage";
+}
+elseif ($text="prova")
+{
+	 $TwitterSentimentAnalysis = new TwitterSentimentAnalysis("e16265e25f400c107e217ca3ba3520c3","89UEqupgMeygd721YbHwZ1DS5","GxlPEzEYTzXItnpru7E7JZw1cjuA4BkiDBMXDULkIDs2TzhPYF","17757558-1jlw4zfBLHJ74o9K4Dn7ULEW8SboHdPFdLAsHjtt9","GxlPEzEYTzXItnpru7E7JZw1cjuA4BkiDBMXDULkIDs2TzhPYF");
+    //Search Tweets parameters as described at https://dev.twitter.com/docs/api/1.1/get/search/tweets
+    $twitterSearchParams=array(
+        'q'=>'vodafone',
+        'lang'=>'en',
+        'count'=>5,
+    );
+    $results=$TwitterSentimentAnalysis->sentimentAnalysis($twitterSearchParams);
+	$response ="Gli ultimi 5 risultati della parola vodafone sono:\n";
+	 foreach($results as $tweet) {
+             $response = $response . $tweet['text'] . $$tweet['sentiment']; 
+	 }
+        $parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
 }
 else
