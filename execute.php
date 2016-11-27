@@ -99,7 +99,7 @@ elseif($text=="rete4gvodafone" || $text=="vodafoneit" || $text=="vodafonetv" )
 	$sentimentParola = $text; 
 	$url = 'https://api.twitter.com/1.1/search/tweets.json';
 	$requestMethod = 'GET';
-	$getfield = '?q=#" . $text . "&result_type=recent';
+	$getfield = '?q=" . $text . "&result_type=recent';
 
 	// Perform the request
 	$twitter = new TwitterAPIExchange($settings);
