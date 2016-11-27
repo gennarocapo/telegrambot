@@ -1,4 +1,14 @@
 <?php
+ require_once('TwitterAPIExchange.php'); //get it from https://github.com/J7mbo/twitter-api-php
+
+    /** Set access tokens here - see: https://dev.twitter.com/apps/ **/
+    $settings = array(
+        'oauth_access_token' => "17757558-1jlw4zfBLHJ74o9K4Dn7ULEW8SboHdPFdLAsHjtt9",
+        'oauth_access_token_secret' => "pNf3nwMeDjonL5yPWc5h05GgvkOmuSWjbgq0TkHwMQaFU",
+        'consumer_key' => "89UEqupgMeygd721YbHwZ1DS5",
+        'consumer_secret' => "GxlPEzEYTzXItnpru7E7JZw1cjuA4BkiDBMXDULkIDs2TzhPYF"
+    );
+
 
 $content = file_get_contents("php://input");
 $update = json_decode($content, true);
@@ -37,7 +47,18 @@ elseif($text=="si")
 }
 elseif($text==strtolower($secondAnswerReal))
 {
-	$response = "Esatto, la pagina Vodafone attualmente si classifica al secondo posto tra le Telco in Italia per numero di Mi Piace, subito dietro Tim con piu di 2M";
+	    $ta_url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
+    	$getfield = '?screen_name=TIM_Official';
+   	 $requestMethod = 'GET';
+  	  $twitter = new TwitterAPIExchange($settings);
+   	 $follow_count=$twitter->setGetfield($getfield)
+    		->buildOauth($ta_url, $requestMethod)
+    		->performRequest();
+          $data = json_decode($follow_count, true);
+          $followers_count=$data[0]['user']['followers_count'];
+          
+	$response = "Esatto, la pagina Vodafone attualmente si classifica al secondo posto tra le Telco in Italia per numero di Mi Piace, subito dietro Tim con piu di 2M.
+	 I follower di tim sono in tutto" . $followers_count;
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
 }
