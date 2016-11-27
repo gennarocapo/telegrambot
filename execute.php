@@ -64,8 +64,8 @@ elseif($text==strtolower($secondAnswerReal))
 
                $Vodafonelikes = $json_output->fan_count;
 
-	$response = "Esatto, la pagina Vodafone attualmente si classifica al secondo posto tra le Telco in Italia per numero di Mi Piace. Queste le prime tre posizioni\n":
-	 I follower di tim sono in tutto: " . number_format($Vodafonelikes);
+	$response = "Esatto, la pagina Vodafone attualmente si classifica al secondo posto tra le Telco in Italia per numero di Mi Piace. Queste le prime tre posizioni\n" .
+	 "I follower di tim sono in tutto: " . number_format($Vodafonelikes);
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
 }
