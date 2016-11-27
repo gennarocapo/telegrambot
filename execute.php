@@ -87,7 +87,7 @@ elseif($text==strtolower($secondAnswerReal))
 	$parameters["method"] = "sendMessage";
 	$parameters["reply_markup"] = '{ "keyboard": [["Prosegui"]], "one_time_keyboard": true}';
 }
-elseif($text=="Prosegui"){
+elseif($text=="prosegui"){
 	$response = "Scegli un hashtag da cercare su twitter";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
@@ -112,7 +112,7 @@ elseif($text=="rete4gvodafone" || $text=="vodafoneit" || $text=="vodafonetv" )
 	$parameters["method"] = "sendMessage";
 	$parameters["reply_markup"] = '{ "keyboard": [["Avanti"]], "one_time_keyboard": true}';
 }
-elseif($text=="Avanti")
+elseif($text=="avanti")
 {
 	
 	 $TwitterSentimentAnalysis = new TwitterSentimentAnalysis("e16265e25f400c107e217ca3ba3520c3","89UEqupgMeygd721YbHwZ1DS5","GxlPEzEYTzXItnpru7E7JZw1cjuA4BkiDBMXDULkIDs2TzhPYF","17757558-1jlw4zfBLHJ74o9K4Dn7ULEW8SboHdPFdLAsHjtt9","pNf3nwMeDjonL5yPWc5h05GgvkOmuSWjbgq0TkHwMQaFU");
