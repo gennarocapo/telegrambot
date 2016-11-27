@@ -1,5 +1,11 @@
 <?php
 require_once('TwitterAPIExchange.php');
+$settings = array(
+    'oauth_access_token' => "17757558-1jlw4zfBLHJ74o9K4Dn7ULEW8SboHdPFdLAsHjtt9",
+    'oauth_access_token_secret' => "pNf3nwMeDjonL5yPWc5h05GgvkOmuSWjbgq0TkHwMQaFU",
+    'consumer_key' => "89UEqupgMeygd721YbHwZ1DS5",
+    'consumer_secret' => "GxlPEzEYTzXItnpru7E7JZw1cjuA4BkiDBMXDULkIDs2TzhPYF"
+);
 $content = file_get_contents("php://input");
 $update = json_decode($content, true);
 
