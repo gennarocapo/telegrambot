@@ -75,10 +75,10 @@ else
     $results=$TwitterSentimentAnalysis->sentimentAnalysis($twitterSearchParams);
 	$risultati="";
          foreach($results as $tweet) {
-	     $risultati= $risultati . "- Sentiment: " . $tweet['sentiment'] . "\n Tweet: " . $tweet['text'] .  "\n\n";
+	     $risultati= $risultati . "- Sentiment: " . $tweet['sentiment'] . "\nTweet: " . $tweet['text'] .  "\n\n";
 	 }
 	
-	 $response ="Gli ultimi 3 risultati della parola " .$text . " sono:\n" . $risultati;
+	 $response ="Dimensione : " . sizeof($results) . " Gli ultimi 3 risultati della parola " .$text . " sono:\n" . $risultati;
         $parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
 }
