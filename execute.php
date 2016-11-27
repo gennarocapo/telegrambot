@@ -69,13 +69,13 @@ elseif ($text=="prova")
     $twitterSearchParams=array(
         'q'=>'vodafone',
         'lang'=>'en',
-        'count'=>2,
+        'count'=>3,
     );
     $results=$TwitterSentimentAnalysis->sentimentAnalysis($twitterSearchParams);
-	$response ="Gli ultimi 5 risultati della parola vodafone sono:\n";
-	 foreach($results as $tweet) {
-             $response = $response . $tweet['text'] . $tweet['sentiment']; 
-	 }
+        $response1 = $results[0]['text'] . $results[0]['sentiment'] . "\n"; 
+	 $response2 = $results[1]['text'] . $results[1]['sentiment'] . "\n"; 
+	$response3 = $results[2]['text'] . $results[2]['sentiment'] . "\n"; 
+	 $response ="Gli ultimi 3 risultati della parola rete4g sono:\n" . $response1 . $response2 . $response3;
         $parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
 }
