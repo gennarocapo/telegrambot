@@ -69,12 +69,12 @@ elseif ($text=="prova")
     $twitterSearchParams=array(
         'q'=>'vodafone',
         'lang'=>'en',
-        'count'=>5,
+        'count'=>2,
     );
     $results=$TwitterSentimentAnalysis->sentimentAnalysis($twitterSearchParams);
 	$response ="Gli ultimi 5 risultati della parola vodafone sono:\n";
 	 foreach($results as $tweet) {
-             $response = $response . $tweet['text'] . $$tweet['sentiment']; 
+             $response = $response . $tweet['text'] . $tweet['sentiment']; 
 	 }
         $parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
