@@ -58,7 +58,7 @@ elseif($text==strtolower($secondAnswerReal))
           $followers_count=$data[0]['user']['followers_count'];
           
 	$response = "Esatto, la pagina Vodafone attualmente si classifica al secondo posto tra le Telco in Italia per numero di Mi Piace, subito dietro Tim con piu di 2M.
-	 I follower di tim sono in tutto" . $followers_count;
+	 I follower di tim sono in tutto: " . $followers_count;
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
 }
