@@ -68,12 +68,12 @@ elseif($text==strtolower($secondAnswerReal))
           $json3_output = json_decode($json3);
 
 
-               $Vodafonelikes = $json_output->fan_count;
-	   $Timlikes = $json1_output->fan_count;
-	$Windlikes = $json3_output->fan_count;
+          $Vodafonelikes = $json_output->fan_count;
+	  $Timlikes = $json1_output->fan_count;
+	  $Windlikes = $json3_output->fan_count;
 	   
 
-	$response = "Esatto, la pagina Vodafone attualmente si classifica al secondo posto tra le Telco in Italia per numero di Mi Piace. Queste le prime tre posizioni\nTim: " . number_format($Timlikes) . "\nVodafone: " . number_format($Vodafonelikes) "\nWind: " . number_format($Windlikes) . "\n";
+	$response = "Esatto, la pagina Vodafone attualmente si classifica al secondo posto tra le Telco in Italia per numero di Mi Piace. Queste le prime tre posizioni\nTim: " . number_format($Timlikes) . "\nVodafone: " . number_format($Vodafonelikes) . "\nWind: " . number_format($Windlikes) . "\n";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
 }
