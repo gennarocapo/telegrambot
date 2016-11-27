@@ -75,7 +75,7 @@ elseif ($text=="network")
     $results=$TwitterSentimentAnalysis->sentimentAnalysis($twitterSearchParams);
 	$risultati="";
          foreach($results as $tweet) {
-	     $risultati= $risultati . " " . $tweet['text'] . " " . $tweet['sentiment'] . "\n";
+	     $risultati= $risultati . " Sentiment: " . $tweet['sentiment'] . " Tweet: " . $tweet['text'] .  "\n";
 	 }
 	
 	 $response ="Gli ultimi 3 risultati della parola " .$text . " sono:\n" . $risultati;
