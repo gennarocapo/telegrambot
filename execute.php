@@ -78,7 +78,7 @@ else
 	     $risultati= $risultati . "- Sentiment: " . $tweet['sentiment'] . "\nTweet: " . $tweet['text'] .  "\n\n";
 	 }
 	
-	 $response ="Dimensione : " . sizeof($results) . " Gli ultimi 3 risultati della parola " .$text . " sono:\n" . $risultati;
+	 $response ="Gli ultimi " . sizeof($results) ." risultati della parola " .$text . " sono:\n" . $risultati;
         $parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
 }
