@@ -1,11 +1,5 @@
 <?php
-require_once('TwitterAPIExchange.php');
-$settings = array(
-    'oauth_access_token' => "",
-    'oauth_access_token_secret' => "",
-    'consumer_key' => "",
-    'consumer_secret' => ""
-);
+
 $content = file_get_contents("php://input");
 $update = json_decode($content, true);
 if(!$update)
