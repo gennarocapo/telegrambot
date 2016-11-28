@@ -159,7 +159,7 @@ elseif( substr($text, 0, 1) === "#")
 		     ->performRequest();
 	$tuitti= json_decode($twres);
 	$rispostatuitti ="\n";
-	foreach($tuitti as $t) {
+	foreach($tuitti["statuses"] as $t) {
 	       $rispostatuitti= $rispostatuitti . "Tweet: " . $t['text'] . "\n";
 	 }
 	 $response ="Ecco alcuni tweet della parola " .$text . " sono:\n" . $rispostatuitti. "\nUn ultimo step prima di concludere: digita una parola di cui calocolare il sentiment preceduta da *\n";
