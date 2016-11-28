@@ -123,11 +123,12 @@ elseif($text=="prosegui"){
 	$response ="I primi tre trend di oggi in Italia sono:\n";
 	$stampatrend=""; 
 	$i=0;
+	$j=$i+1;
 	$stack = array();
 	foreach($string[0]['trends'] as $trend) {
 	     if ($i<=2){
 		     $stack[$i] = $trend['name'];
-		$stampatrend=$stampatrend . "Trend " . $i.": ". $trend['name'] . "\n";
+		$stampatrend=$stampatrend . "Trend " . $j.": ". $trend['name'] . "\n";
 		     $i=$i + 1;
 		     
 	     } else break;
@@ -135,7 +136,7 @@ elseif($text=="prosegui"){
 	 $response=$response . $stampatrend . "Clicca su uno dei tre trend per trovarne dei tweet " . $stack[2];
 	
 	$keyboard = [
-                'inline_keyboard' => [[['text' => $stack[0], 'callback_data' => $stack[0]]], [['text' =>  $stack[1], 'callback_data' => $stack[1]]]],
+                'inline_keyboard' => [[['text' => $stack[0], 'callback_data' => $stack[0]]], [['text' =>  $stack[1], 'callback_data' => $stack[1]]], [['text' =>  $stack[2], 'callback_data' => $stack[2]]]],
 
             ];
                 $markup = json_encode($keyboard, true);
