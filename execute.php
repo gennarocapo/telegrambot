@@ -99,11 +99,12 @@ elseif($text=="prosegui"){
 	$string = json_decode($twitter->setGetfield($getfield)
 ->buildOauth($url, $requestMethod)
 ->performRequest(),$assoc = TRUE);
-	$ciao =$twitter->setGetfield($getfield)
-->buildOauth($url, $requestMethod)
-->performRequest(),$assoc = TRUE);
-	$ciaostampa=json_encode($ciao, JSON_PRETTY_PRINT);
-	$response ="Stringa " . $ciaostampa . "\n";
+	//$ciao =$twitter->setGetfield($getfield)
+//->buildOauth($url, $requestMethod)
+//->performRequest(),$assoc = TRUE);
+
+	//$ciaostampa=json_encode($ciao, JSON_PRETTY_PRINT);
+	//$response ="Stringa " . $ciaostampa . "\n";
 	//$response ="I primi " . sizeof($string) . " trend oggi sono:\n";
 	$stampatrend=""; 
 	
