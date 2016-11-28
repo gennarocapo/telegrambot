@@ -108,9 +108,9 @@ elseif($text=="prosegui"){
 	//$response ="I primi " . sizeof($string) . " trend oggi sono:\n";
 	$stampatrend=""; 
 	
-	foreach($string as $trend) {
-		$response=$response ."Trend:" . $trend['trends']['name'] . "\n";
-	     $stampatrend=$stampatrend . "Trend: " . $trend['trends']['name'] . "\n";
+	foreach($string[0]['trends'] as $trend) {
+		$response=$response ."Trend:" . $trend['name'] . "\n";
+	     $stampatrend=$stampatrend . "Trend: " . $trend['name'] . "\n";
 	 }
 	 $response=$response . $stampatrend;
 	$parameters = array('chat_id' => $chatId, "text" => $response);
