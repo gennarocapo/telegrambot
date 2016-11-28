@@ -55,17 +55,7 @@ elseif($text==$secondAnswerFake1 || $text==$secondAnswerFake2 || $text==$secondA
 	$parameters["reply_markup"] = '{ "keyboard": [[">1.5M"],["<1M"],[">2M"],[">5M"]], "one_time_keyboard": true}';
 }
 elseif($text==strtolower($secondAnswerReal))
-{
-	    $ta_url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
-    	$getfield = '?screen_name=TIM_Official';
-   	 $requestMethod = 'GET';
-  	  $twitter = new TwitterAPIExchange($settings);
-   	 $follow_count=$twitter->setGetfield($getfield)
-    		->buildOauth($ta_url, $requestMethod)
-    		->performRequest();
-          $data = json_decode($follow_count, true);
-          $followers_count=$data[0]['user']['followers_count'];
-          
+{          
 	  $json_url ='https://graph.facebook.com/vodafoneit?access_token=1361949993817552|b4c680b656602a4a697f45d7d0cf790e&fields=fan_count';
 	  $json = file_get_contents($json_url);
           $json_output = json_decode($json);
@@ -85,7 +75,31 @@ elseif($text==strtolower($secondAnswerReal))
 	$response = "Esatto, la pagina Vodafone attualmente si classifica al secondo posto tra le Telco in Italia per numero di Mi Piace.\n Queste sono le prime tre posizioni in tempo reale.\nTim: " . number_format($Timlikes) . "\nVodafone: " . number_format($Vodafonelikes) . "\nWind: " . number_format($Windlikes) . "\nSarà lo stesso anche su Twitter? Clicca per scoprirlo";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
+	$parameters["reply_markup"] = '{ "keyboard": [["Avanti"]], "one_time_keyboard": true}';
+}
+elseif($text=="avanti"){
+	  $ta_url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
+    	$TIMgetfield = '?screen_name=TIM_Official';
+	$VODAgetfield = '?screen_name=VodafoneIT';
+   	 $requestMethod = 'GET';
+  	  $twitter = new TwitterAPIExchange($settings);
+   	 $TIMfollow_count=$twitter->setGetfield($TIMgetfield)
+    		->buildOauth($ta_url, $requestMethod)
+    		->performRequest();
+          $TIMdata = json_decode($TIMfollow_count, true);
+          $TIMfollowers_count=$TIMdata[0]['user']['followers_count'];
+	
+	   $VODAfollow_count=$twitter->setGetfield($VODAgetfield)
+    		->buildOauth($ta_url, $requestMethod)
+    		->performRequest();
+          $VODAdata = json_decode($VODAfollow_count, true);
+          $VODAfollowers_count=$VODAdata[0]['user']['followers_count'];
+	
+	$response = "Su Twitter la pagina Vodafone ha " . number_format($VODAfollowers_count) . "\n mentre TIM ne ha " . number_format($TIMfollowers_count) . " però Vodafone è molto piu attiva come numero di tweet rispetto a TIM, circa 176K contro 125K. Clicca su Prosegui per altri insight";
+	$parameters = array('chat_id' => $chatId, "text" => $response);
+	$parameters["method"] = "sendMessage";
 	$parameters["reply_markup"] = '{ "keyboard": [["Prosegui"]], "one_time_keyboard": true}';
+	
 }
 elseif($text=="prosegui"){
 	$url = 'https://api.twitter.com/1.1/trends/place.json';
@@ -105,7 +119,7 @@ elseif($text=="prosegui"){
 
 	//$ciaostampa=json_encode($ciao, JSON_PRETTY_PRINT);
 	//$response ="Stringa " . $ciaostampa . "\n";
-	//$response ="I primi " . sizeof($string) . " trend oggi sono:\n";
+	$response ="I primi tre trend di oggi in Italia sono:\n";
 	$stampatrend=""; 
 	$i=0;
 	foreach($string[0]['trends'] as $trend) {
@@ -136,9 +150,9 @@ elseif($text=="rete4gvodafone" || $text=="vodafoneit" || $text=="vodafonetv" )
 	 $response ="Gli ultimi " . sizeof($results) ." risultati della parola " .$text . " sono:\n" . $risultati;
         $parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
-	$parameters["reply_markup"] = '{ "keyboard": [["Avanti"]], "one_time_keyboard": true}';
+	$parameters["reply_markup"] = '{ "keyboard": [["Concludi"]], "one_time_keyboard": true}';
 }
-elseif($text=="avanti")
+elseif($text=="concludi")
 {
 	
 	 $TwitterSentimentAnalysis = new TwitterSentimentAnalysis("e16265e25f400c107e217ca3ba3520c3","89UEqupgMeygd721YbHwZ1DS5","GxlPEzEYTzXItnpru7E7JZw1cjuA4BkiDBMXDULkIDs2TzhPYF","17757558-1jlw4zfBLHJ74o9K4Dn7ULEW8SboHdPFdLAsHjtt9","pNf3nwMeDjonL5yPWc5h05GgvkOmuSWjbgq0TkHwMQaFU");
