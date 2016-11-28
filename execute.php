@@ -134,9 +134,9 @@ elseif($text=="prosegui"){
 	 $response=$response . $stampatrend . "Clicca su uno dei tre trend per trovarne dei tweet";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
-	$parameters["reply_markup"] = '{ "keyboard": [[""],[""],[""]], "one_time_keyboard": true}';
+	$parameters["reply_markup"] = '{ "keyboard": [["ciao"],["sss"],["sdad"]], "one_time_keyboard": true}';
 }
-elseif( substr($text, 0, $length) === "#"))
+elseif( $text == "#referendum"))
 {
 	$sentimentParola = $text; 
 	$url = 'https://api.twitter.com/1.1/search/tweets.json';
@@ -151,10 +151,10 @@ elseif( substr($text, 0, $length) === "#"))
 		     ->performRequest();
 	$tuitti= json_decode(twres);
 	$rispostatuitti ="\n";
-	foreach($tuitti as $t) {
-	       $rispostatuitti= $rispostatuitti . "Tweet: " . $t['text'] . "\n";
-	 }
-	 $response ="Ecco alcuni tweet della parola " .$text . " sono:\n" . $rispostatuitti. "\nUn ultimo step prima di concludere: digita una parola di cui calocolare il sentiment preceduta da *\n";
+	//foreach($tuitti as $t) {
+	  //     $rispostatuitti= $rispostatuitti . "Tweet: " . $t['text'] . "\n";
+	 //}
+	 //$response ="Ecco alcuni tweet della parola " .$text . " sono:\n" . $rispostatuitti. "\nUn ultimo step prima di concludere: digita una parola di cui calocolare il sentiment preceduta da *\n";
         $parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
 }
@@ -175,6 +175,11 @@ elseif($text=="concludi")
 	     $risultati= $risultati . "- Sentiment: " . $tweet['sentiment'] . "\nTweet: " . $tweet['text'] .  "\n\n";
 	 }
 	 $response ="Posso anche calcolare il sentiment della parola che hai ricercato. Gli ultimi " . sizeof($results) . " sono:\n" . $risultati;
+        $parameters = array('chat_id' => $chatId, "text" => $response);
+	$parameters["method"] = "sendMessage";
+}
+else{
+	 $response ="Comando errato";
         $parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
 }
