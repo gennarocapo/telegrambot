@@ -137,7 +137,7 @@ elseif($text=="prosegui"){
 	$parameters["method"] = "sendMessage";
 	$parameters["reply_markup"] = '{ "keyboard": [$stack[0],$stack[1],$stack[2]], "one_time_keyboard": true}';
 }
-elseif( substr($text, 0, $length) === "#")
+elseif( substr($text, 0, 1) === "#")
 {
 	$sentimentParola = $text; 
 	$url = 'https://api.twitter.com/1.1/search/tweets.json';
