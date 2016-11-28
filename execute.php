@@ -72,7 +72,8 @@ elseif($text==strtolower($secondAnswerReal))
 	  $Windlikes = $json3_output->fan_count;
 	   
 
-	$response = "Esatto, la pagina Vodafone attualmente si classifica al secondo posto tra le Telco in Italia per numero di Mi Piace.\n Queste sono le prime tre posizioni in tempo reale.\nTim: " . number_format($Timlikes) . "Mi Piace\nVodafone: " . number_format($Vodafonelikes) . " Mi Piace\nWind: " . number_format($Windlikes) . " Mi Piace\nSarà lo stesso anche su Twitter? Clicca per scoprirlo";
+	$response = "Esatto, la pagina Vodafone attualmente si classifica al secondo posto tra le Telco in Italia per numero di Mi Piace.\n Queste sono le prime tre posizioni in tempo reale.\nTim: "
+		. number_format($Timlikes) . "Mi Piace\nVodafone: " . number_format($Vodafonelikes) . " Mi Piace\nWind: " . number_format($Windlikes) . " Mi Piace\nSarà lo stesso anche su Twitter? Clicca per scoprirlo";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
 	$parameters["reply_markup"] = '{ "keyboard": [["Avanti"]], "one_time_keyboard": true}';
@@ -149,7 +150,7 @@ elseif( $text == "#referendum"))
 	$twres= $twitter->setGetfield($getfield)
 		     ->buildOauth($url, $requestMethod)
 		     ->performRequest();
-	$tuitti= json_decode(twres);
+	$tuitti= json_decode($twres);
 	$rispostatuitti ="\n";
 	//foreach($tuitti as $t) {
 	  //     $rispostatuitti= $rispostatuitti . "Tweet: " . $t['text'] . "\n";
