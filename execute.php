@@ -135,7 +135,8 @@ elseif($text=="prosegui"){
 	 $response=$response . $stampatrend . "Clicca su uno dei tre trend per trovarne dei tweet " . $stack[2];
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
-	$parameters["reply_markup"] = '{ "keyboard": json_encode($stack), "one_time_keyboard": true}';
+	
+	$parameters["reply_markup"] = '{ "keyboard": array(array("A", "B")), "one_time_keyboard": true}';
 }
 elseif( substr($text, 0, 1) === "#")
 {
