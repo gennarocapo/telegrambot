@@ -95,12 +95,13 @@ elseif($text=="prosegui"){
 	// Perform the request
 	$twitter = new TwitterAPIExchange($settings);
 	$twres="";
-	$twres= $twitter->setGetfield($getfield)
-		     ->buildOauth($url, $requestMethod)
-		     ->performRequest();
+	
+	$string = json_decode($twitter->setGetfield($getfield)
+->buildOauth($url, $requestMethod)
+->performRequest(),$assoc = TRUE);
 	 $response ="I primi " . sizeof($twres) . " trend oggi sono:\n";
 	$stampatrend=""; 
-	$alltrends= json_decode(file_get_contents($twres))->trends;
+	$alltrends= $string->trends;
 	foreach($alltrends as $trend) {
 		$response=$response ."Trend:" . $trend->name . "\n";
 	     $stampatrend=$stampatrend . "Trend: " . $trend->name . "\n";
