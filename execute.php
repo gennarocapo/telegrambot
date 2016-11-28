@@ -134,9 +134,9 @@ elseif($text=="prosegui"){
 	 $response=$response . $stampatrend . "Clicca su uno dei tre trend per trovarne dei tweet";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
-	$parameters["reply_markup"] = '{ "keyboard": ["","",""], "one_time_keyboard": true}';
+	$parameters["reply_markup"] = '{ "keyboard": [[""],[""],[""]], "one_time_keyboard": true}';
 }
-elseif( substr($text, 0, $length) == "#"))
+elseif( substr($text, 0, $length) === "#"))
 {
 	$sentimentParola = $text; 
 	$url = 'https://api.twitter.com/1.1/search/tweets.json';
@@ -149,11 +149,11 @@ elseif( substr($text, 0, $length) == "#"))
 	$twres= $twitter->setGetfield($getfield)
 		     ->buildOauth($url, $requestMethod)
 		     ->performRequest();
-	$tuitti= json_decode(twres,true);
+	$tuitti= json_decode(twres);
 	$rispostatuitti ="\n";
-	         foreach($tuitti as $t) {
-	             $rispostatuitti= $rispostatuitti . "Tweet: " . $t['text'] . "\n";
-	         }
+	foreach($tuitti as $t) {
+	       $rispostatuitti= $rispostatuitti . "Tweet: " . $t['text'] . "\n";
+	 }
 	 $response ="Ecco alcuni tweet della parola " .$text . " sono:\n" . $rispostatuitti. "\nUn ultimo step prima di concludere: digita una parola di cui calocolare il sentiment preceduta da *\n";
         $parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
