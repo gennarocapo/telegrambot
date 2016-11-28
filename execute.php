@@ -148,7 +148,7 @@ elseif( substr($text, 0, 1) === "#")
 	$sentimentParola = $text; 
 	$url = 'https://api.twitter.com/1.1/search/tweets.json';
 	$requestMethod = 'GET';
-	$getfield = '?q=" . $text . "&result_type=recent&count=3';
+	$getfield = '?q=" . substr($text, 1); . "&result_type=recent&count=3';
 
 	// Perform the request
 	$twitter = new TwitterAPIExchange($settings);
