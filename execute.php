@@ -99,7 +99,8 @@ elseif($text=="prosegui"){
 	$string = json_decode($twitter->setGetfield($getfield)
 ->buildOauth($url, $requestMethod)
 ->performRequest(),$assoc = TRUE);
-	 $response ="I primi " . sizeof($string) . " trend oggi sono:\n";
+	$response ="Stringa " . $string["created_at"] ."\n";
+	//$response ="I primi " . sizeof($string) . " trend oggi sono:\n";
 	$stampatrend=""; 
 	
 	foreach($string as $trend) {
