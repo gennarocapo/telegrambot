@@ -90,7 +90,7 @@ elseif($text==strtolower($secondAnswerReal))
 elseif($text=="prosegui"){
 	$url = 'https://api.twitter.com/1.1/trends/place.json';
 	$requestMethod = 'GET';
-	$getfield = '?id=1';
+	$getfield = '?id=718345';
 
 	// Perform the request
 	$twitter = new TwitterAPIExchange($settings);
@@ -102,6 +102,7 @@ elseif($text=="prosegui"){
 	$stampatrend=""; 
 	$alltrends= $twres[0]->trends;
 	foreach($alltrends as $trend) {
+		$response=$response ."Trend:" . $trend->name . "\n";
 	     $stampatrend=$stampatrend . "Trend: " . $trend->name . "\n";
 	 }
 	 $response=$response . $stampatrend;
