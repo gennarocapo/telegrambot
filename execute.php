@@ -133,10 +133,14 @@ elseif($text=="prosegui"){
 	     } else break;
 	 }
 	 $response=$response . $stampatrend . "Clicca su uno dei tre trend per trovarne dei tweet " . $stack[2];
-	$parameters = array('chat_id' => $chatId, "text" => $response);
+	
+	$keyboard = [
+                'inline_keyboard' => [['text' =>  $stack[0], 'callback_data' => $stack[0]]],
+            ];
+                $markup = json_encode($keyboard, true);
+	$parameters = array('chat_id' => $chatId, "text" => $response,'reply_markup' => $markup);
 	$parameters["method"] = "sendMessage";
 	
-	$parameters["reply_markup"] = '{ "keyboard": [["\".$stack[0]."\","ciao"]], "one_time_keyboard": true}';
 }
 elseif( substr($text, 0, 1) === "#")
 {
