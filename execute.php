@@ -29,9 +29,9 @@ $text = strtolower($text);
 header("Content-Type: application/json");
 $response = '';
 $secondAnswerReal = ">1.5M";
-$secondAnswerFake1 = "<1M";
-$secondAnswerFake2 = ">2M";
-$secondAnswerFake3 = ">5M";
+$secondAnswerFake1 = "<1m";
+$secondAnswerFake2 = ">2m";
+$secondAnswerFake3 = ">5m";
 $sentimentParola= "ReferendumItaly";
 if(strpos($text, "/start") === 0 || $text=="ciao" || $text=="cia" || $text=="hello" || $text=="hi" || $text=="no")
 {
@@ -72,7 +72,7 @@ elseif($text==strtolower($secondAnswerReal))
 	  $Windlikes = $json3_output->fan_count;
 	   
 
-	$response = "Esatto, la pagina Vodafone attualmente si classifica al secondo posto tra le Telco in Italia per numero di Mi Piace.\n Queste sono le prime tre posizioni in tempo reale.\nTim: " . number_format($Timlikes) . "\nVodafone: " . number_format($Vodafonelikes) . "\nWind: " . number_format($Windlikes) . "\nSarà lo stesso anche su Twitter? Clicca per scoprirlo";
+	$response = "Esatto, la pagina Vodafone attualmente si classifica al secondo posto tra le Telco in Italia per numero di Mi Piace.\n Queste sono le prime tre posizioni in tempo reale.\nTim: " . number_format($Timlikes) . "Mi Piace\nVodafone: " . number_format($Vodafonelikes) . " Mi Piace\nWind: " . number_format($Windlikes) . " Mi Piace\nSarà lo stesso anche su Twitter? Clicca per scoprirlo";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
 	$parameters["reply_markup"] = '{ "keyboard": [["Avanti"]], "one_time_keyboard": true}';
@@ -95,7 +95,7 @@ elseif($text=="avanti"){
           $VODAdata = json_decode($VODAfollow_count, true);
           $VODAfollowers_count=$VODAdata[0]['user']['followers_count'];
 	
-	$response = "Su Twitter la pagina Vodafone ha " . number_format($VODAfollowers_count) . "\n mentre TIM ne ha " . number_format($TIMfollowers_count) . " però Vodafone è molto piu attiva come numero di tweet rispetto a TIM, circa 176K contro 125K. Clicca su Prosegui per altri insight";
+	$response = "Su Twitter la pagina Vodafone ha " . number_format($VODAfollowers_count) . "followers\nmentre TIM ne ha " . number_format($TIMfollowers_count) . " però Vodafone è molto piu attiva come numero di tweet rispetto a TIM, circa 176K contro 125K. Clicca su Prosegui per altri insight";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
 	$parameters["reply_markup"] = '{ "keyboard": [["Prosegui"]], "one_time_keyboard": true}';
@@ -122,24 +122,26 @@ elseif($text=="prosegui"){
 	$response ="I primi tre trend di oggi in Italia sono:\n";
 	$stampatrend=""; 
 	$i=0;
+	$stack = array();
 	foreach($string[0]['trends'] as $trend) {
 	     if ($i<=2){
-		$stampatrend=$stampatrend . "Trend: " . $trend['name'] . "\n";
+		     array_push($stack, $trend['name']);
+		$stampatrend=$stampatrend . "Trend " . $i.": ". $trend['name'] . "\n";
 		     $i=$i + 1;
 		     
 	     } else break;
 	 }
-	 $response=$response . $stampatrend;
+	 $response=$response . $stampatrend . "Clicca su uno dei tre trend per trovarne dei tweet";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
-	
+	$parameters["reply_markup"] = '{ "keyboard": [$stack[0],$stack[1],$stack[2]], "one_time_keyboard": true}';
 }
-elseif($text=="rete4gvodafone" || $text=="vodafoneit" || $text=="vodafonetv" )
+elseif( substr($haystack, 0, $length) == "#"))
 {
 	$sentimentParola = $text; 
 	$url = 'https://api.twitter.com/1.1/search/tweets.json';
 	$requestMethod = 'GET';
-	$getfield = '?q=" . $text . "&result_type=recent';
+	$getfield = '?q=" . $text . "&result_type=recent&count=3';
 
 	// Perform the request
 	$twitter = new TwitterAPIExchange($settings);
@@ -147,10 +149,14 @@ elseif($text=="rete4gvodafone" || $text=="vodafoneit" || $text=="vodafonetv" )
 	$twres= $twitter->setGetfield($getfield)
 		     ->buildOauth($url, $requestMethod)
 		     ->performRequest();
-	 $response ="Gli ultimi " . sizeof($results) ." risultati della parola " .$text . " sono:\n" . $risultati;
+	$tuitti= json_decode(twres,true);
+	$rispostatuitti ="\n";
+	         foreach($tuitti as $t) {
+	             $rispostatuitti= $risultati . "Tweet: " . $t['text'] . "\n";
+	         }
+	 $response ="Ecco alcuni tweet della parola " .$text . " sono:\n" . $rispostatuitti. "\nUn ultimo step prima di concludere: digita una parola di cui calocolare il sentiment preceduta da *:\n";
         $parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
-	$parameters["reply_markup"] = '{ "keyboard": [["Concludi"]], "one_time_keyboard": true}';
 }
 elseif($text=="concludi")
 {
