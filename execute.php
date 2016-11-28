@@ -78,7 +78,7 @@ elseif($text==strtolower($secondAnswerReal))
 	$parameters["reply_markup"] = '{ "keyboard": [["Avanti"]], "one_time_keyboard": true}';
 }
 elseif($text=="avanti"){
-	  $ta_url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
+	 /* $ta_url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
     	$TIMgetfield = '?screen_name=TIM_Official';
 	$VODAgetfield = '?screen_name=VodafoneIT';
    	 $requestMethod = 'GET';
@@ -95,10 +95,10 @@ elseif($text=="avanti"){
           $VODAdata = json_decode($VODAfollow_count, true);
           $VODAfollowers_count=$VODAdata[0]['user']['followers_count'];
 	
-	$response = "Su Twitter la pagina Vodafone ha " . number_format($VODAfollowers_count) . "followers\nmentre TIM ne ha " . number_format($TIMfollowers_count) . " però Vodafone è molto piu attiva come numero di tweet rispetto a TIM, circa 176K contro 125K. Clicca su Prosegui per altri insight";
+	$response = "Su Twitter la pagina Vodafone ha " . number_format($VODAfollowers_count) . " followers\nmentre TIM ne ha " . number_format($TIMfollowers_count) . " però Vodafone è molto piu attiva come numero di tweet rispetto a TIM, circa 176K contro 125K. Clicca su Prosegui per altri insight";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
-	$parameters["reply_markup"] = '{ "keyboard": [["Prosegui"]], "one_time_keyboard": true}';
+	$parameters["reply_markup"] = '{ "keyboard": [["Prosegui"]], "one_time_keyboard": true}';*/
 	
 }
 elseif($text=="prosegui"){
