@@ -149,7 +149,7 @@ elseif( substr($text, 0, 1) === "#")
 	$url = 'https://api.twitter.com/1.1/search/tweets.json';
 	$requestMethod = 'GET';
 	$query=substr($text, 1) ;
-	$getfield = '?q=" . $text . "&count=3';
+	$getfield = '?q=" . $text . "&count=3&lang=it';
 
 	// Perform the request
 	$twitter = new TwitterAPIExchange($settings);
@@ -160,7 +160,7 @@ elseif( substr($text, 0, 1) === "#")
 	$tuitti= json_decode($twres);
 	$rispostatuitti ="\n";
 	foreach($tuitti->statuses as $t) {
-	       $rispostatuitti= $rispostatuitti . "Tweet: " . $t->text . "\n";
+	       $rispostatuitti= $rispostatuitti . "Utente: " . $t->user->screen_name ." Tweet: " . $t->text . "\n";
 	 }
 	 $response ="Ecco alcuni tweet della parola " .$text . " sono:\n" . $rispostatuitti. "\nUn ultimo step prima di concludere: digita una parola di cui calocolare il sentiment preceduta da *\n";
         $parameters = array('chat_id' => $chatId, "text" => $response);
