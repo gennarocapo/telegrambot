@@ -102,7 +102,7 @@ elseif($text=="avanti"){
 	
 }
 elseif($text=="prosegui"){
-	$url = 'https://api.twitter.com/1.1/trends/place.json';
+	/*$url = 'https://api.twitter.com/1.1/trends/place.json';
 	$requestMethod = 'GET';
 	$getfield = '?id=23424853';
 
@@ -134,7 +134,7 @@ elseif($text=="prosegui"){
 	 $response=$response . $stampatrend . "Clicca su uno dei tre trend per trovarne dei tweet";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
-	$parameters["reply_markup"] = '{ "keyboard": [["ciao"],["sss"],["sdad"]], "one_time_keyboard": true}';
+	$parameters["reply_markup"] = '{ "keyboard": [["ciao"],["sss"],["sdad"]], "one_time_keyboard": true}';*/
 }
 elseif( $text == "#referendum"))
 {
