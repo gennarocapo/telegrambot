@@ -100,7 +100,7 @@ elseif($text=="prosegui"){
 		     ->performRequest();
 	 $response ="I primi " . sizeof($twres) . " trend oggi sono:\n";
 	$stampatrend=""; 
-	$alltrends= $twres->trends;
+	$alltrends= json_decode(file_get_contents($twres))->trends;
 	foreach($alltrends as $trend) {
 		$response=$response ."Trend:" . $trend->name . "\n";
 	     $stampatrend=$stampatrend . "Trend: " . $trend->name . "\n";
