@@ -32,7 +32,7 @@ $secondAnswerReal = ">1.5M";
 $secondAnswerFake1 = "<1M";
 $secondAnswerFake2 = ">2M";
 $secondAnswerFake3 = ">5M";
-$sentimentParola= "@vodafoneit";
+$sentimentParola= "ReferendumItaly";
 if(strpos($text, "/start") === 0 || $text=="ciao" || $text=="cia" || $text=="hello" || $text=="hi" || $text=="no")
 {
 	$response = "Ciao $firstname, benvenuto! Sei pronto per partire col percorso digitale? ";
@@ -88,10 +88,24 @@ elseif($text==strtolower($secondAnswerReal))
 	$parameters["reply_markup"] = '{ "keyboard": [["Prosegui"]], "one_time_keyboard": true}';
 }
 elseif($text=="prosegui"){
-	$response = "Scegli un hashtag da cercare su twitter";
+	$url = 'https://api.twitter.com/1.1/trends/place.json';
+	$requestMethod = 'GET';
+	$getfield = '?id=718345';
+
+	// Perform the request
+	$twitter = new TwitterAPIExchange($settings);
+	$twres="";
+	$twres= $twitter->setGetfield($getfield)
+		     ->buildOauth($url, $requestMethod)
+		     ->performRequest();
+	 $response ="I primi " . sizeof($twres) ." trend oggi sono:\n";
+	$stampatrend=""; 
+	foreach($twres[0] as $trend) {
+	     $stampatrend=$stampatrend . "Trend: " . $trend->name . "\n";
+	 }
+	 $response=$response . $Stampatrend;
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
-	$parameters["reply_markup"] = '{ "keyboard": [["rete4gvodafone"],["vodafonetv"],["vodafoneit"]], "one_time_keyboard": true}';
 	
 }
 elseif($text=="rete4gvodafone" || $text=="vodafoneit" || $text=="vodafonetv" )
