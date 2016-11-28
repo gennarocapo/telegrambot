@@ -134,9 +134,9 @@ elseif($text=="prosegui"){
 	 $response=$response . $stampatrend . "Clicca su uno dei tre trend per trovarne dei tweet";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
-	$parameters["reply_markup"] = '{ "keyboard": [$stack[0],$stack[1],$stack[2]], "one_time_keyboard": true}';
+	$parameters["reply_markup"] = '{ "keyboard": ["","",""], "one_time_keyboard": true}';
 }
-elseif( substr($haystack, 0, $length) == "#"))
+elseif( substr($text, 0, $length) == "#"))
 {
 	$sentimentParola = $text; 
 	$url = 'https://api.twitter.com/1.1/search/tweets.json';
@@ -152,9 +152,9 @@ elseif( substr($haystack, 0, $length) == "#"))
 	$tuitti= json_decode(twres,true);
 	$rispostatuitti ="\n";
 	         foreach($tuitti as $t) {
-	             $rispostatuitti= $risultati . "Tweet: " . $t['text'] . "\n";
+	             $rispostatuitti= $rispostatuitti . "Tweet: " . $t['text'] . "\n";
 	         }
-	 $response ="Ecco alcuni tweet della parola " .$text . " sono:\n" . $rispostatuitti. "\nUn ultimo step prima di concludere: digita una parola di cui calocolare il sentiment preceduta da *:\n";
+	 $response ="Ecco alcuni tweet della parola " .$text . " sono:\n" . $rispostatuitti. "\nUn ultimo step prima di concludere: digita una parola di cui calocolare il sentiment preceduta da *\n";
         $parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
 }
