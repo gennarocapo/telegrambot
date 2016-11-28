@@ -136,7 +136,7 @@ elseif($text=="prosegui"){
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
 	
-	$parameters["reply_markup"] = '{ "keyboard": [["".$stack[0],"".$stack[1],"".$stack[2]]], "one_time_keyboard": true}';
+	$parameters["reply_markup"] = '{ "keyboard": [["\".$stack[0]."\","ciao"]], "one_time_keyboard": true}';
 }
 elseif( substr($text, 0, 1) === "#")
 {
