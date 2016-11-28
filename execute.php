@@ -149,7 +149,7 @@ elseif( substr($text, 0, 1) === "#")
 	$url = 'https://api.twitter.com/1.1/search/tweets.json';
 	$requestMethod = 'GET';
 	$query=substr($text, 1) ;
-	$getfield = '?q=" . $query . "&result_type=recent&count=3';
+	$getfield = '?q=" . $text . "&count=3';
 
 	// Perform the request
 	$twitter = new TwitterAPIExchange($settings);
