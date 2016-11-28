@@ -135,9 +135,9 @@ elseif($text=="prosegui"){
 	 $response=$response . $stampatrend . "Clicca su uno dei tre trend per trovarne dei tweet";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
-	$parameters["reply_markup"] = '{ "keyboard": [["ciao"],["sss"],["sdad"]], "one_time_keyboard": true}';
+	$parameters["reply_markup"] = '{ "keyboard": [$stack[0],$stack[1],$stack[2]], "one_time_keyboard": true}';
 }
-elseif( $text == "#referendum")
+elseif( substr($text, 0, $length) === "#")
 {
 	$sentimentParola = $text; 
 	$url = 'https://api.twitter.com/1.1/search/tweets.json';
