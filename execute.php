@@ -104,7 +104,7 @@ elseif($text=="prosegui"){
 	foreach($alltrends as $trend) {
 	     $stampatrend=$stampatrend . "Trend: " . $trend->name . "\n";
 	 }
-	 $response=$response . $Stampatrend;
+	 $response=$response . $stampatrend;
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
 	
