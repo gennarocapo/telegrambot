@@ -102,7 +102,7 @@ elseif($text=="prosegui"){
 	if($string["errors"][0]["message"] != ""){
 		$response=$response.$string[errors][0]["message"];
 	}
-	$response ="Stringa " . $string["created_at"] ."\n";
+	$response ="Stringa " . $string."\n";
 	//$response ="I primi " . sizeof($string) . " trend oggi sono:\n";
 	$stampatrend=""; 
 	
