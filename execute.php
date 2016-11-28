@@ -102,7 +102,11 @@ elseif($text=="prosegui"){
 	if($string["errors"][0]["message"] != ""){
 		$response=$response.$string[errors][0]["message"];
 	}
-	$response ="Stringa " . json_encode($string, JSON_PRETTY_PRINT)."\n";
+	$ciao =$twitter->setGetfield($getfield)
+->buildOauth($url, $requestMethod)
+->performRequest(),$assoc = TRUE);
+	$ciaostampa=json_encode($ciao, JSON_PRETTY_PRINT);
+	$response ="Stringa " . $ciaostampa ."\n";
 	//$response ="I primi " . sizeof($string) . " trend oggi sono:\n";
 	$stampatrend=""; 
 	
