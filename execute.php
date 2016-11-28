@@ -99,12 +99,12 @@ elseif($text=="prosegui"){
 	$string = json_decode($twitter->setGetfield($getfield)
 ->buildOauth($url, $requestMethod)
 ->performRequest(),$assoc = TRUE);
-	 $response ="I primi " . sizeof($twres) . " trend oggi sono:\n";
+	 $response ="I primi " . sizeof($string) . " trend oggi sono:\n";
 	$stampatrend=""; 
-	$alltrends= $string->trends;
-	foreach($alltrends as $trend) {
-		$response=$response ."Trend:" . $trend->name . "\n";
-	     $stampatrend=$stampatrend . "Trend: " . $trend->name . "\n";
+	
+	foreach($string as $trend) {
+		$response=$response ."Trend:" . $trend['trends']['name']. "\n";
+	     $stampatrend=$stampatrend . "Trend: " . $trend['trends']['name']. "\n";
 	 }
 	 $response=$response . $stampatrend;
 	$parameters = array('chat_id' => $chatId, "text" => $response);
