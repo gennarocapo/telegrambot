@@ -102,12 +102,12 @@ elseif($text=="prosegui"){
 	if($string["errors"][0]["message"] != ""){
 		$response=$response.$string[errors][0]["message"];
 	}
-	//$response ="Stringa " . $string["created_at"] ."\n";
+	$response ="Stringa " . $string["created_at"] ."\n";
 	//$response ="I primi " . sizeof($string) . " trend oggi sono:\n";
 	$stampatrend=""; 
 	
 	foreach($string as $trend) {
-		$response=$response ."Trend:" . $trend['created_at'] . "\n";
+		$response=$response ."Trend:" . $trend['trends']['url'] . "\n";
 	     $stampatrend=$stampatrend . "Trend: " . $trend['trends']['name'] . "\n";
 	 }
 	 $response=$response . $stampatrend;
