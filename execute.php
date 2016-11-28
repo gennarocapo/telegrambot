@@ -137,7 +137,7 @@ elseif($text=="prosegui"){
 	$parameters["method"] = "sendMessage";
 	$parameters["reply_markup"] = '{ "keyboard": [["ciao"],["sss"],["sdad"]], "one_time_keyboard": true}';*/
 }
-elseif( $text == "#referendum"))
+elseif( $text == "#referendum")
 {
 	$sentimentParola = $text; 
 	$url = 'https://api.twitter.com/1.1/search/tweets.json';
