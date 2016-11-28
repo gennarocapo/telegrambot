@@ -90,7 +90,7 @@ elseif($text==strtolower($secondAnswerReal))
 elseif($text=="prosegui"){
 	$url = 'https://api.twitter.com/1.1/trends/place.json';
 	$requestMethod = 'GET';
-	$getfield = '?id=718345';
+	$getfield = '?id=1';
 
 	// Perform the request
 	$twitter = new TwitterAPIExchange($settings);
@@ -98,7 +98,7 @@ elseif($text=="prosegui"){
 	$twres= $twitter->setGetfield($getfield)
 		     ->buildOauth($url, $requestMethod)
 		     ->performRequest();
-	 $response ="I primi " . sizeof($twres) ." trend oggi sono:\n";
+	 $response ="I primi " . sizeof($twres) . " trend oggi sono:\n";
 	$stampatrend=""; 
 	$alltrends= $twres[0]->trends;
 	foreach($alltrends as $trend) {
