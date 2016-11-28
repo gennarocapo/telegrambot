@@ -135,7 +135,8 @@ elseif($text=="prosegui"){
 	 $response=$response . $stampatrend . "Clicca su uno dei tre trend per trovarne dei tweet " . $stack[2];
 	
 	$keyboard = [
-                'inline_keyboard' => [['text' =>  "ciao", 'callback_data' => "ciao"]],
+                'inline_keyboard' => [[['text' =>  "ciao", 'callback_data' => "ciao"]], [['text' =>  "ciao2", 'callback_data' => "ciao2"]]],
+
             ];
                 $markup = json_encode($keyboard, true);
 	$parameters = array('chat_id' => $chatId, "text" => $response,'reply_markup' => $markup);
