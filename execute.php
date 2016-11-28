@@ -126,7 +126,7 @@ elseif($text=="prosegui"){
 	$stack = array();
 	foreach($string[0]['trends'] as $trend) {
 	     if ($i<=2){
-		     array_push($stack, $trend['name']);
+		     $stack[$i] = $trend['name'];
 		$stampatrend=$stampatrend . "Trend " . $i.": ". $trend['name'] . "\n";
 		     $i=$i + 1;
 		     
@@ -135,7 +135,7 @@ elseif($text=="prosegui"){
 	 $response=$response . $stampatrend . "Clicca su uno dei tre trend per trovarne dei tweet " . $stack[2];
 	
 	$keyboard = [
-                'inline_keyboard' => [[['text' => $trend['name'], 'callback_data' => "ciao"]], [['text' =>  "ciao2", 'callback_data' => "ciao2"]]],
+                'inline_keyboard' => [[['text' => $stack[0], 'callback_data' => $stack[0]]], [['text' =>  $stack[1], 'callback_data' => $stack[1]]]],
 
             ];
                 $markup = json_encode($keyboard, true);
