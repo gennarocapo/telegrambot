@@ -107,8 +107,8 @@ elseif($text=="prosegui"){
 	$stampatrend=""; 
 	
 	foreach($string as $trend) {
-		$response=$response ."Trend:" . $trend['trends']['name']. "\n";
-	     $stampatrend=$stampatrend . "Trend: " . $trend['trends']['name']. "\n";
+		$response=$response ."Trend:" . $trend['created_at'] . "\n";
+	     $stampatrend=$stampatrend . "Trend: " . $trend['trends']['name'] . "\n";
 	 }
 	 $response=$response . $stampatrend;
 	$parameters = array('chat_id' => $chatId, "text" => $response);
