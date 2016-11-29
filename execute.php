@@ -161,13 +161,14 @@ elseif( substr($text, 0, 1) === "#")
 	$tuitti= json_decode($twres);
 	$rispostatuitti ="\n";
 	foreach($tuitti->statuses as $t) {
-	       $rispostatuitti= $rispostatuitti . "Utente: " . $t->user->screen_name ." Tweet: " . $t->text . "\n";
+	       $rispostatuitti= $rispostatuitti . "-Utente: " . $t->user->screen_name ." Tweet: " . $t->text . "\n\n";
 	 }
-	 $response ="Ecco alcuni tweet della parola " .$text . " sono:\n" . $rispostatuitti. "\n";
+	 $response ="Ecco alcuni tweet della parola " .$text . " sono:\n" . $rispostatuitti. "\n\n Chiudiamo il nostro percorso con una sentment analysis su una dei seguenti hot-topic:";
         $parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
+	$parameters["reply_markup"] = '{ "keyboard": [["referendumitaly"],["vodafone"],["vodafonenetwork"]], "one_time_keyboard": true}';
 }
-elseif($text=="concludi")
+elseif($text=="referendumitaly" || $text=="vodafone" || $text=="vodafonenetwork")
 {
 	$sentimentParola = $text; 
 	 $TwitterSentimentAnalysis = new TwitterSentimentAnalysis("e16265e25f400c107e217ca3ba3520c3","89UEqupgMeygd721YbHwZ1DS5","GxlPEzEYTzXItnpru7E7JZw1cjuA4BkiDBMXDULkIDs2TzhPYF","17757558-1jlw4zfBLHJ74o9K4Dn7ULEW8SboHdPFdLAsHjtt9","pNf3nwMeDjonL5yPWc5h05GgvkOmuSWjbgq0TkHwMQaFU");
@@ -188,7 +189,7 @@ elseif($text=="concludi")
 	$parameters["method"] = "sendMessage";
 }
 else{
-	 $response ="Comando errato";
+	 $response ="Comando errato, Riprova";
         $parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
 }
