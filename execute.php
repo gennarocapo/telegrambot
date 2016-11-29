@@ -167,7 +167,7 @@ elseif( substr($text, 0, 1) === "#")
 	 $response ="Ecco alcuni tweet della parola " .$text . " sono:\n" . $rispostatuitti. "\nChiudiamo il nostro percorso con una sentment analysis su una dei seguenti hot-topic:";
         $parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
-	$parameters["reply_markup"] = '{ "keyboard": [["referendum italy"],["vodafone"],["vodafonenetwork"]], "one_time_keyboard": true}';
+	$parameters["reply_markup"] = '{ "keyboard": [["referendum italy"],["donaldtrump"],["matteorenzi"],["vodafone"]], "one_time_keyboard": true}';
 }
 elseif($text=="referendum italy" || $text=="vodafone" || $text=="donaldtrump" || $text=="matteorenzi")
 {
