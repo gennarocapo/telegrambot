@@ -145,12 +145,12 @@ elseif($text=="prosegui"){
 }
 elseif( substr($text, 0, 1) === "#")
 {
-	$sentimentParola = $text; 
+
 	$url = 'https://api.twitter.com/1.1/search/tweets.json';
 	$requestMethod = 'GET';
 	$query=substr($text, 1) ;
 	$query="%23". $query;
-	$getfield = '?q=" . $query . "&count=3&lang=it';
+	$getfield = '?q=' . $query . '&count=3&lang=it';
 
 	// Perform the request
 	$twitter = new TwitterAPIExchange($settings);
@@ -163,13 +163,13 @@ elseif( substr($text, 0, 1) === "#")
 	foreach($tuitti->statuses as $t) {
 	       $rispostatuitti= $rispostatuitti . "Utente: " . $t->user->screen_name ." Tweet: " . $t->text . "\n";
 	 }
-	 $response ="Ecco alcuni tweet della parola " .$text . " sono:\n" . $rispostatuitti. "\nUn ultimo step prima di concludere: digita una parola di cui calocolare il sentiment preceduta da *\n";
+	 $response ="Ecco alcuni tweet della parola " .$text . " sono:\n" . $rispostatuitti. "\n";
         $parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
 }
 elseif($text=="concludi")
 {
-	
+	$sentimentParola = $text; 
 	 $TwitterSentimentAnalysis = new TwitterSentimentAnalysis("e16265e25f400c107e217ca3ba3520c3","89UEqupgMeygd721YbHwZ1DS5","GxlPEzEYTzXItnpru7E7JZw1cjuA4BkiDBMXDULkIDs2TzhPYF","17757558-1jlw4zfBLHJ74o9K4Dn7ULEW8SboHdPFdLAsHjtt9","pNf3nwMeDjonL5yPWc5h05GgvkOmuSWjbgq0TkHwMQaFU");
     //Search Tweets parameters as described at https://dev.twitter.com/docs/api/1.1/get/search/tweets
     $twitterSearchParams=array(
