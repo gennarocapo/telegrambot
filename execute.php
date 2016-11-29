@@ -133,7 +133,7 @@ elseif($text=="prosegui"){
 		     
 	     } else break;
 	 }
-	 $response=$response . $stampatrend . "Clicca su uno dei tre trend per trovarne dei tweet " . $stack[2];
+	 $response=$response . $stampatrend . "Clicca su uno dei tre trend per trovarne dei tweet.";
 	
 	$keyboard = [
                 'keyboard' => [[['text' => $stack[0], 'callback_data' => $stack[0]]], [['text' =>  $stack[1], 'callback_data' => $stack[1]]], [['text' =>  $stack[2], 'callback_data' => $stack[2]]]],
@@ -169,9 +169,11 @@ elseif( substr($text, 0, 1) === "#")
 	$parameters["method"] = "sendMessage";
 	$parameters["reply_markup"] = '{ "keyboard": [["referendumitaly"],["vodafone"],["vodafonenetwork"]], "one_time_keyboard": true}';
 }
-elseif($text=="referendumitaly" || $text=="vodafone" || $text=="vodafonenetwork")
+elseif($text=="referendum italy" || $text=="vodafone" || $text=="donaldtrump" || $text=="matteorenzi")
 {
-	$sentimentParola = $text; 
+	if ($text == "referendum italy"){
+		$sentimentParola = "referendum%20italy"; }
+	else {$sentimentParola = $text; }
 	 $TwitterSentimentAnalysis = new TwitterSentimentAnalysis("e16265e25f400c107e217ca3ba3520c3","89UEqupgMeygd721YbHwZ1DS5","GxlPEzEYTzXItnpru7E7JZw1cjuA4BkiDBMXDULkIDs2TzhPYF","17757558-1jlw4zfBLHJ74o9K4Dn7ULEW8SboHdPFdLAsHjtt9","pNf3nwMeDjonL5yPWc5h05GgvkOmuSWjbgq0TkHwMQaFU");
     //Search Tweets parameters as described at https://dev.twitter.com/docs/api/1.1/get/search/tweets
     $twitterSearchParams=array(
@@ -185,7 +187,7 @@ elseif($text=="referendumitaly" || $text=="vodafone" || $text=="vodafonenetwork"
          foreach($results as $tweet) {
 	     $risultati= $risultati . "- Sentiment: " . $tweet['sentiment'] . "\nTweet: " . $tweet['text'] .  "\n\n";
 	 }
-	 $response ="Posso anche calcolare il sentiment della parola che hai ricercato. Gli ultimi " . sizeof($results) . " sono:\n" . $risultati;
+	 $response ="Gli ultimi " . sizeof($results) . " sono:\n" . $risultati;
         $parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
 }
