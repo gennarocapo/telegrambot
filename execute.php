@@ -187,9 +187,25 @@ elseif($text=="referendum italy" || $text=="vodafone" || $text=="donaldtrump" ||
          foreach($results as $tweet) {
 	     $risultati= $risultati . "- Sentiment: " . $tweet['sentiment'] . "\nTweet: " . $tweet['text'] .  "\n\n";
 	 }
-	 $response ="Gli ultimi " . sizeof($results) . " sono:\n" . $risultati;
+	 $response ="Ecco " . sizeof($results) . " sentiment sul tema:\n" . $risultati;
         $parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
+	$parameters["reply_markup"] = '{ "keyboard": [["Concludi"]], "one_time_keyboard": true}';
+
+}
+elseif($text=="concludi")
+{
+	$botUrl = "https://api.telegram.org/bot" . "229868142:AAGO_M5QbEEIqXkBVv-wlqkRTlyk0SQ0huI" . "/sendPhoto";
+	// change image name and path
+	$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("digital.png")), 'caption' => "Complimenti!");
+	$ch = curl_init(); 
+	curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
+	curl_setopt($ch, CURLOPT_URL, $botUrl); 
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+	// read curl response
+	$output = curl_exec($ch);
+
 }
 else{
 	 $response ="Comando errato, Riprova";
