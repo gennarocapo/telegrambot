@@ -149,6 +149,7 @@ elseif( substr($text, 0, 1) === "#")
 	$url = 'https://api.twitter.com/1.1/search/tweets.json';
 	$requestMethod = 'GET';
 	$query=substr($text, 1) ;
+	$query="%23". $query;
 	$getfield = '?q=" . $query . "&count=3&lang=it';
 
 	// Perform the request
