@@ -123,14 +123,13 @@ elseif($text=="prosegui"){
 	$response ="I primi tre trend di oggi in Italia sono:\n";
 	$stampatrend=""; 
 	$i=0;
-	$j=$i+1;
 	$stack = array();
 	foreach($string[0]['trends'] as $trend) {
 	     if ($i<=2){
+		     $j=$i+1;
 		     $stack[$i] = $trend['name'];
 		$stampatrend=$stampatrend . "Trend " . $j.": ". $trend['name'] . "\n";
-		     $i=$i + 1;
-		     
+		     $i=$i + 1;     
 	     } else break;
 	 }
 	 $response=$response . $stampatrend . "Clicca su uno dei tre trend per trovarne dei tweet.";
