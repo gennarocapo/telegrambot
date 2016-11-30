@@ -96,7 +96,7 @@ elseif($text=="avanti"){
           $VODAdata = json_decode($VODAfollow_count, true);
           $VODAfollowers_count=$VODAdata[0]['user']['followers_count'];
 	
-	$response = "Su Twitter, la pagina Vodafone ha " . number_format($VODAfollowers_count) . " followers\nmentre TIM ne ha " . number_format($TIMfollowers_count) . "\ntuttavia Vodafone è piu attiva come numero di tweet rispetto a TIM, circa 176K contro 125K.\nClicca su Prosegui per altri insight";
+	$response = "Su Twitter, la pagina Vodafone ha " . number_format($VODAfollowers_count) . " followers\nmentre TIM ne ha " . number_format($TIMfollowers_count) . "\ntuttavia Vodafone è piu attiva come numero assoluto di tweet, circa 176K contro 125K.\nClicca su Prosegui per altri insight";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
 	$parameters["reply_markup"] = '{ "keyboard": [["Prosegui"]], "one_time_keyboard": true}';
@@ -170,7 +170,7 @@ elseif( substr($text, 0, 1) === "#")
 		$formato=$date->format("d-m-Y H:i");
 		$rispostatuitti= $rispostatuitti . "-Utente: @" . $t->user->screen_name ."\n-Data: " . $formato . "\n-Tweet: " . $t->text . "\n\n";
 	 }
-	 $response ="Ecco alcuni tweet della parola " .$text . " sono:\n" . $rispostatuitti. "\nChiudiamo il nostro percorso con una sentment analysis su una dei seguenti hot-topic:";
+	 $response ="Ecco alcuni tweet della parola " .$text . " sono:\n" . $rispostatuitti. "\nChiudiamo il nostro percorso con una sentment analysis su uno dei seguenti hot-topic:";
         $parameters = array('chat_id' => $chatId, "text" => $response,'disable_web_page_preview' => true);
 	$parameters["method"] = "sendMessage";
 	$parameters["reply_markup"] = '{ "keyboard": [["referendum italy"],["donaldtrump"],["matteorenzi"],["vodafone"]], "one_time_keyboard": true}';
@@ -194,7 +194,7 @@ elseif($text=="referendum italy" || $text=="vodafone" || $text=="donaldtrump" ||
 	     $risultati= $risultati . "- Sentiment: " . $tweet['sentiment'] . "\nTweet: " . $tweet['text'] .  "\n\n";
 	 }
 	 $response ="Ecco " . sizeof($results) . " sentiment sul tema:\n" . $risultati;
-        $parameters = array('chat_id' => $chatId, "text" => $response);
+        $parameters = array('chat_id' => $chatId, "text" => $response,,'disable_web_page_preview' => true);
 	$parameters["method"] = "sendMessage";
 	$parameters["reply_markup"] = '{ "keyboard": [["Concludi"]], "one_time_keyboard": true}';
 
