@@ -45,7 +45,7 @@ elseif($text=="si")
 	$response = "Bene, cominciamo.. Secondo te quanti Mi Piace ha la pagina Vodafone su Facebook?";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
-	$parameters["reply_markup"] = '{ "keyboard": [[">1.5M"],["<1M"],[">2M"]], "one_time_keyboard": true}';
+	$parameters["reply_markup"] = '{ "keyboard": [[">1.5M"],["<1M"],[">2M"],[">5M"]], "one_time_keyboard": true}';
 }
 elseif($text==$secondAnswerFake1 || $text==$secondAnswerFake2 || $text==$secondAnswerFake3)
 {
@@ -72,7 +72,7 @@ elseif($text==strtolower($secondAnswerReal))
 	  $Windlikes = $json3_output->fan_count;
 	   
 
-	$response = "Esatto, la pagina Vodafone attualmente si classifica al secondo posto tra le Telco in Italia per numero di Mi Piace.\nQueste sono le prime tre posizioni in tempo reale.\nTim: "
+	$response = "Esatto, la pagina Vodafone attualmente si classifica al secondo posto tra le Telco in Italia per numero di Mi Piace su Facebook.\nQueste sono le prime tre posizioni in tempo reale.\nTim: "
 		. number_format($Timlikes) . " Mi Piace\nVodafone: " . number_format($Vodafonelikes) . " Mi Piace\nWind: " . number_format($Windlikes) . " Mi Piace\n\nSarà lo stesso anche su Twitter? Continua per scoprirlo";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
@@ -96,7 +96,7 @@ elseif($text=="avanti"){
           $VODAdata = json_decode($VODAfollow_count, true);
           $VODAfollowers_count=$VODAdata[0]['user']['followers_count'];
 	
-	$response = "Su Twitter, la pagina Vodafone ha " . number_format($VODAfollowers_count) . " followers\nmentre TIM ne ha " . number_format($TIMfollowers_count) . " tuttavia Vodafone è molto piu attiva come numero di tweet rispetto a TIM, circa 176K contro 125K.\nClicca su Prosegui per altri insight";
+	$response = "Su Twitter, la pagina Vodafone ha " . number_format($VODAfollowers_count) . " followers\nmentre TIM ne ha " . number_format($TIMfollowers_count) . "\ntuttavia Vodafone è piu attiva come numero di tweet rispetto a TIM, circa 176K contro 125K.\nClicca su Prosegui per altri insight";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
 	$parameters["reply_markup"] = '{ "keyboard": [["Prosegui"]], "one_time_keyboard": true}';
@@ -120,16 +120,18 @@ elseif($text=="prosegui"){
 
 	//$ciaostampa=json_encode($ciao, JSON_PRETTY_PRINT);
 	//$response ="Stringa " . $ciaostampa . "\n";
-	$response ="I primi tre trend di oggi in Italia sono:\n";
+	$response ="I primi trend di oggi in Italia sono:\n";
 	$stampatrend=""; 
 	$i=0;
 	$stack = array();
 	foreach($string[0]['trends'] as $trend) {
 	     if ($i<=2){
-		     $j=$i+1;
-		     $stack[$i] = $trend['name'];
-		$stampatrend=$stampatrend . "Trend " . $j.": ". $trend['name'] . "\n";
-		     $i=$i + 1;     
+		     if (substr($trend['name'],0,1)==="#"){
+		     	$j=$i+1;
+		     	$stack[$i] = $trend['name'];
+		     	$stampatrend=$stampatrend . "Trend " . $j.": ". $trend['name'] . "\n";
+		    	$i=$i + 1;     
+		     }
 	     } else break;
 	 }
 	 $response=$response . $stampatrend . "Clicca su uno dei tre trend per trovarne dei tweet.";
