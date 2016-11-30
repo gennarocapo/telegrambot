@@ -164,8 +164,8 @@ elseif( substr($text, 0, 1) === "#")
 	$rispostatuitti ="\n";
 	foreach($tuitti->statuses as $t) {
 	      // $data=new DateTime( $t->created_at);
-		//$formato=$data->format("d-m-Y, H:i");
-		$rispostatuitti= $rispostatuitti . "-Utente: " . $t->user->screen_name ."\n-Data: " . $t->created_at . "\n-Tweet: " . $t->text . "\n\n";
+		$formato=date("d-m-Y H:i", strtotime($t->created_at));
+		$rispostatuitti= $rispostatuitti . "-Utente: @" . $t->user->screen_name ."\n-Data: " . $formato . "\n-Tweet: " . $t->text . "\n\n";
 	 }
 	 $response ="Ecco alcuni tweet della parola " .$text . " sono:\n" . $rispostatuitti. "\nChiudiamo il nostro percorso con una sentment analysis su una dei seguenti hot-topic:";
         $parameters = array('chat_id' => $chatId, "text" => $response,'disable_web_page_preview' => true);
