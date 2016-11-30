@@ -141,7 +141,7 @@ elseif($text=="prosegui"){
 		'one-time-keyboard' => "true",
             ];
                 $markup = json_encode($keyboard, true);
-	$parameters = array('chat_id' => $chatId, "text" => $response,'reply_markup' => $markup);
+	$parameters = array('chat_id' => $chatId, "text" => $response,'reply_markup' => $markup,'disable_web_page_preview' => true );
 	$parameters["method"] = "sendMessage";
 	
 }
