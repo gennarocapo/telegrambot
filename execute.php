@@ -164,7 +164,8 @@ elseif( substr($text, 0, 1) === "#")
 	$rispostatuitti ="\n";
 	foreach($tuitti->statuses as $t) {
 	      // $data=new DateTime( $t->created_at);
-		$date = new DateTime($t->created_at, new DateTimeZone("Europe/Malta"));
+		date_default_timezone_set('Europe/Rome');
+		$date = new DateTime($t->created_at, new DateTimeZone("Europe/Rome"));
 		$formato=$date->format("d-m-Y H:i");
 		$rispostatuitti= $rispostatuitti . "-Utente: @" . $t->user->screen_name ."\n-Data: " . $formato . "\n-Tweet: " . $t->text . "\n\n";
 	 }
