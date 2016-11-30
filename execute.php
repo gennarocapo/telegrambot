@@ -166,6 +166,7 @@ elseif( substr($text, 0, 1) === "#")
 	      // $data=new DateTime( $t->created_at);
 		date_default_timezone_set('Europe/Rome');
 		$date = new DateTime($t->created_at, new DateTimeZone("Europe/Rome"));
+		$date->add(new DateInterval('PT1H'));
 		$formato=$date->format("d-m-Y H:i");
 		$rispostatuitti= $rispostatuitti . "-Utente: @" . $t->user->screen_name ."\n-Data: " . $formato . "\n-Tweet: " . $t->text . "\n\n";
 	 }
