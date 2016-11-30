@@ -141,7 +141,7 @@ elseif($text=="prosegui"){
 		'one-time-keyboard' => "true",
             ];
                 $markup = json_encode($keyboard, true);
-	$parameters = array('chat_id' => $chatId, "text" => $response,'reply_markup' => $markup,'disable_web_page_preview' => true );
+	$parameters = array('chat_id' => $chatId, "text" => $response,'reply_markup' => $markup);
 	$parameters["method"] = "sendMessage";
 	
 }
@@ -166,7 +166,7 @@ elseif( substr($text, 0, 1) === "#")
 	       $rispostatuitti= $rispostatuitti . "-Utente: " . $t->user->screen_name ."\n-Tweet: " . $t->text . "\n\n";
 	 }
 	 $response ="Ecco alcuni tweet della parola " .$text . " sono:\n" . $rispostatuitti. "\nChiudiamo il nostro percorso con una sentment analysis su una dei seguenti hot-topic:";
-        $parameters = array('chat_id' => $chatId, "text" => $response);
+        $parameters = array('chat_id' => $chatId, "text" => $response,'disable_web_page_preview' => true);
 	$parameters["method"] = "sendMessage";
 	$parameters["reply_markup"] = '{ "keyboard": [["referendum italy"],["donaldtrump"],["matteorenzi"],["vodafone"]], "one_time_keyboard": true}';
 }
