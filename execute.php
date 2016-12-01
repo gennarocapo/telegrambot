@@ -33,7 +33,7 @@ $secondAnswerFake1 = "<1m";
 $secondAnswerFake2 = ">2m";
 $secondAnswerFake3 = ">5m";
 $sentimentParola= "ReferendumItaly";
-if(strpos($text, "/start") === 0 || $text=="ciao" || $text=="cia" || $text=="hello" || $text=="hi" || $text=="no")
+if(strpos($text, "/start") === 0 || $text=="ciao" || $text=="cia" || $text=="hello" || $text=="hi" || $text=="no" || $text=="ricomincia" )
 {
 	$response = "Ciao $firstname, benvenuto! Sei pronto per partire con il percorso digitale? ";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
@@ -205,7 +205,11 @@ elseif($text=="concludi")
 	$botUrl = "https://api.telegram.org/bot" . "229868142:AAGO_M5QbEEIqXkBVv-wlqkRTlyk0SQ0huI" . "/sendPhoto";
 	// change image name and path
 	$testo="Complimenti " . $firstname . "!";
-	$keyboard = array("remove_keyboard" => true);
+	$keyboard = [
+                'keyboard' => [['text' => "Ricomincia"]],
+		'one-time-keyboard' => true,
+		"resize_keyboard" =>true,
+	];
         $markup = json_encode($keyboard, true);
 	$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("digital.png")), 'caption' => $testo,'reply_markup' => $markup);
 	$ch = curl_init(); 
