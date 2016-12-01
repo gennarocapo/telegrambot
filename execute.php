@@ -76,7 +76,7 @@ elseif($text==strtolower($secondAnswerReal))
 		. number_format($Timlikes) . " Mi Piace\nVodafone: " . number_format($Vodafonelikes) . " Mi Piace\nWind: " . number_format($Windlikes) . " Mi Piace\n\nSarà lo stesso anche su Twitter? Continua per scoprirlo";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
-	$parameters["reply_markup"] = '{ "keyboard": [["Avanti"]], "one_time_keyboard": true}';
+	$parameters["reply_markup"] = '{ "keyboard": [["Avanti"]], "one_time_keyboard": true,"resize_keyboard":true}';
 }
 elseif($text=="avanti"){
 	  $ta_url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
@@ -99,7 +99,7 @@ elseif($text=="avanti"){
 	$response = "Su Twitter, la pagina Vodafone ha " . number_format($VODAfollowers_count) . " followers\nmentre TIM ne ha " . number_format($TIMfollowers_count) . "\ntuttavia Vodafone è piu attiva come numero assoluto di tweet, circa 176K contro 125K.\nClicca su Prosegui per altri insight";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
-	$parameters["reply_markup"] = '{ "keyboard": [["Prosegui"]], "one_time_keyboard": true}';
+	$parameters["reply_markup"] = '{ "keyboard": [["Prosegui"]], "one_time_keyboard": true,"resize_keyboard":true}';
 	
 }
 elseif($text=="prosegui"){
@@ -134,7 +134,7 @@ elseif($text=="prosegui"){
 		     }
 	     } else break;
 	 }
-	 $response=$response . $stampatrend . "Clicca su uno dei tre trend per trovarne dei tweet.";
+	 $response=$response . $stampatrend . "Clicca su uno dei trend per trovarne dei tweet.";
 	
 	$keyboard = [
                 'keyboard' => [[['text' => $stack[0], 'callback_data' => $stack[0]]], [['text' =>  $stack[1], 'callback_data' => $stack[1]]], [['text' =>  $stack[2], 'callback_data' => $stack[2]]]],
@@ -196,7 +196,7 @@ elseif($text=="referendum italy" || $text=="vodafone" || $text=="donaldtrump" ||
 	 $response ="Ecco " . sizeof($results) . " sentiment sul tema:\n" . $risultati;
         $parameters = array('chat_id' => $chatId, "text" => $response,'disable_web_page_preview' => true);
 	$parameters["method"] = "sendMessage";
-	$parameters["reply_markup"] = '{ "keyboard": [["Concludi"]], "one_time_keyboard": true}';
+	$parameters["reply_markup"] = '{ "keyboard": [["Concludi"]], "one_time_keyboard": true,"resize_keyboard":true}';
 
 }
 elseif($text=="concludi")
