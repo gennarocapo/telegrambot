@@ -38,7 +38,7 @@ if(strpos($text, "/start") === 0 || $text=="ciao" || $text=="cia" || $text=="hel
 	$response = "Ciao $firstname, benvenuto! Sei pronto per partire con il percorso digitale? ";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
-	$parameters["reply_markup"] = '{ "keyboard": [["si"], ["no"]], "one_time_keyboard": true}';
+	$parameters["reply_markup"] = '{ "keyboard": [["si"], ["no"]], "one_time_keyboard": true,"resize_keyboard":true}';
 }
 elseif($text=="si")
 {
