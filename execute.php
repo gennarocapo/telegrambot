@@ -203,7 +203,8 @@ elseif($text=="concludi")
 {
 	$botUrl = "https://api.telegram.org/bot" . "229868142:AAGO_M5QbEEIqXkBVv-wlqkRTlyk0SQ0huI" . "/sendPhoto";
 	// change image name and path
-	$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("digital.png")), 'caption' => "Complimenti ".$firstname."!");
+	$testo="Complimenti " . $firstname . "!";
+	$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("digital.png")), 'caption' => $testo);
 	$ch = curl_init(); 
 	curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
 	curl_setopt($ch, CURLOPT_URL, $botUrl); 
