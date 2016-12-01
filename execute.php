@@ -206,9 +206,9 @@ elseif($text=="concludi")
 	// change image name and path
 	$testo="Complimenti " . $firstname . "!";
 	$keyboard = [
-                'keyboard' => [['text' => "Ricomincia"]],
+                'keyboard' => [["Ricomincia"]],
 		'one-time-keyboard' => true,
-		"resize_keyboard" =>true,
+		"resize_keyboard" => true,
 	];
         $markup = json_encode($keyboard, true);
 	$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("digital.png")), 'caption' => $testo,'reply_markup' => $markup);
