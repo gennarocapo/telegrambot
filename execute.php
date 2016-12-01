@@ -45,14 +45,14 @@ elseif($text=="si")
 	$response = "Bene, cominciamo.. Secondo te quanti Mi Piace ha la pagina Vodafone su Facebook?";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
-	$parameters["reply_markup"] = '{ "keyboard": [[">1.5M"],["<1M"],[">2M"],[">5M"]], "one_time_keyboard": true}';
+	$parameters["reply_markup"] = '{ "keyboard": [[">1.5M"],["<1M"],[">2M"],[">5M"]], "one_time_keyboard": true,"resize_keyboard":true}';
 }
 elseif($text==$secondAnswerFake1 || $text==$secondAnswerFake2 || $text==$secondAnswerFake3)
 {
 	$response = "Putroppo no,riproviamo..Secondo te quanti Mi Piace ha la pagina Vodafone su Facebook?";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
-	$parameters["reply_markup"] = '{ "keyboard": [[">1.5M"],["<1M"],[">2M"],[">5M"]], "one_time_keyboard": true}';
+	$parameters["reply_markup"] = '{ "keyboard": [[">1.5M"],["<1M"],[">2M"],[">5M"]], "one_time_keyboard": true,"resize_keyboard":true}';
 }
 elseif($text==strtolower($secondAnswerReal))
 {          
@@ -138,7 +138,8 @@ elseif($text=="prosegui"){
 	
 	$keyboard = [
                 'keyboard' => [[['text' => $stack[0], 'callback_data' => $stack[0]]], [['text' =>  $stack[1], 'callback_data' => $stack[1]]], [['text' =>  $stack[2], 'callback_data' => $stack[2]]]],
-		'one-time-keyboard' => "true",
+		'one-time-keyboard' => true,
+		"resize_keyboard" =>true,
             ];
                 $markup = json_encode($keyboard, true);
 	$parameters = array('chat_id' => $chatId, "text" => $response,'reply_markup' => $markup);
@@ -171,7 +172,7 @@ elseif( substr($text, 0, 1) === "#")
 		$rispostatuitti= $rispostatuitti . "-Utente: @" . $t->user->screen_name ."\n-Data: " . $formato . "\n-Tweet: " . $t->text . "\n\n";
 	 }
 	 $response ="Ecco alcuni tweet della parola " .$text . " sono:\n" . $rispostatuitti. "\nChiudiamo il nostro percorso con una sentment analysis su uno dei seguenti hot-topic:";
-        $parameters = array('chat_id' => $chatId, "text" => $response,'disable_web_page_preview' => true);
+        $parameters = array('chat_id' => $chatId, "text" => $response,'disable_web_page_preview' => true,'resize_keyboard' => true);
 	$parameters["method"] = "sendMessage";
 	$parameters["reply_markup"] = '{ "keyboard": [["referendum italy"],["donaldtrump"],["matteorenzi"],["vodafone"]], "one_time_keyboard": true}';
 }
