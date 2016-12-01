@@ -194,7 +194,7 @@ elseif($text=="referendum italy" || $text=="vodafone" || $text=="donaldtrump" ||
 	     $risultati= $risultati . "- Sentiment: " . $tweet['sentiment'] . "\nTweet: " . $tweet['text'] .  "\n\n";
 	 }
 	 $response ="Ecco " . sizeof($results) . " sentiment sul tema:\n" . $risultati;
-        $parameters = array('chat_id' => $chatId, "text" => $response,,'disable_web_page_preview' => true);
+        $parameters = array('chat_id' => $chatId, "text" => $response,'disable_web_page_preview' => true);
 	$parameters["method"] = "sendMessage";
 	$parameters["reply_markup"] = '{ "keyboard": [["Concludi"]], "one_time_keyboard": true}';
 
