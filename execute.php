@@ -72,7 +72,7 @@ elseif($text==strtolower($secondAnswerReal))
 	  $Windlikes = $json3_output->fan_count;
 	   
 
-	$response = "Esatto, la pagina Vodafone è al secondo posto tra le Telco in Italia per numero di Mi Piace su Facebook.\nQueste le prime tre posizioni in questo momento:\nTim: "
+	$response = "Esatto, la pagina Vodafone è al secondo posto tra le Telco in Italia per numero di Mi Piace su Facebook.\nQueste le prime tre posizioni in questo preciso momento:\nTim: "
 		. number_format($Timlikes) . " Mi Piace\nVodafone: " . number_format($Vodafonelikes) . " Mi Piace\nWind: " . number_format($Windlikes) . " Mi Piace\n\nSarà lo stesso anche su Twitter? Continua per scoprirlo";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
