@@ -174,7 +174,7 @@ elseif( substr($text, 0, 1) === "#")
 	 $response ="Ecco alcuni tweet della parola " .$text . " sono:\n" . $rispostatuitti. "\n";
         $parameters = array('chat_id' => $chatId, "text" => $response,'disable_web_page_preview' => true,'resize_keyboard' => true);
 	$parameters["method"] = "sendMessage";
-	$parameters["reply_markup"] = '{ "keyboard": [["Continua"]], "one_time_keyboard": true}';
+	$parameters["reply_markup"] = '{ "keyboard": [["Continua"]], "one_time_keyboard": true,"resize_keyboard":true}';
 }
 elseif ($text == "continua"){
 	$response ="Chiudiamo il nostro percorso con una sentment analysis su uno dei seguenti hot-topic:";
