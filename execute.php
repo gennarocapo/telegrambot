@@ -120,7 +120,7 @@ elseif($text=="prosegui"){
 
 	//$ciaostampa=json_encode($ciao, JSON_PRETTY_PRINT);
 	//$response ="Stringa " . $ciaostampa . "\n";
-	$response ="I primi trend di oggi in Italia su Twitter sono:\n";
+	$response ="In questo istante, i primi trend in Italia su Twitter sono:\n";
 	$stampatrend=""; 
 	$i=0;
 	$stack = array();
