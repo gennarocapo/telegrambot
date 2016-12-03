@@ -169,7 +169,7 @@ elseif( substr($text, 0, 1) === "#")
 		$date = new DateTime($t->created_at, new DateTimeZone("Europe/Rome"));
 		$date->add(new DateInterval('PT1H'));
 		$formato=$date->format("d-m-Y H:i");
-		$rispostatuitti= $rispostatuitti . "-Utente: @" . $t->user->screen_name ."\n-Data: " . $formato . "\n-Tweet: " . $t->text . "\n\n";
+		$rispostatuitti= $rispostatuitti . "-Utente: @" . $t->user->screen_name ."\n-Data del tweet: " . $formato . "\n-Tweet: " . $t->text . "\n\n";
 	 }
 	 $response ="Ecco alcuni tweet della parola " .$text . " sono:\n" . $rispostatuitti. "\n";
         $parameters = array('chat_id' => $chatId, "text" => $response,'disable_web_page_preview' => true,'resize_keyboard' => true);
