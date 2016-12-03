@@ -96,7 +96,7 @@ elseif($text=="avanti"){
           $VODAdata = json_decode($VODAfollow_count, true);
           $VODAfollowers_count=$VODAdata[0]['user']['followers_count'];
 	
-	$response = "Su Twitter, la pagina Vodafone ha " . number_format($VODAfollowers_count) . " followers\nmentre TIM ne ha " . number_format($TIMfollowers_count) . "\ntuttavia Vodafone è piu attiva come numero assoluto di tweet, circa 176K contro 125K.\nClicca su Prosegui per altri insight";
+	$response = "Su Twitter, la pagina Vodafone ha " . number_format($VODAfollowers_count) . " followers\nmentre TIM ne ha " . number_format($TIMfollowers_count) . ", tuttavia Vodafone è piu attiva come numero assoluto di tweet, circa 176K contro 125K.\nClicca su Prosegui per altri insight";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
 	$parameters["reply_markup"] = '{ "keyboard": [["Prosegui"]], "one_time_keyboard": true,"resize_keyboard":true}';
@@ -120,7 +120,7 @@ elseif($text=="prosegui"){
 
 	//$ciaostampa=json_encode($ciao, JSON_PRETTY_PRINT);
 	//$response ="Stringa " . $ciaostampa . "\n";
-	$response ="I primi trend di oggi in Italia sono:\n";
+	$response ="I primi trend di oggi in Italia su Twitter sono:\n";
 	$stampatrend=""; 
 	$i=0;
 	$stack = array();
