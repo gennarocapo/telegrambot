@@ -45,14 +45,14 @@ elseif($text=="si")
 	$response = "Bene, cominciamo.. Secondo te quanti Mi Piace ha la pagina Vodafone su Facebook?";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
-	$parameters["reply_markup"] = '{ "keyboard": [[">1.5M"],["<1M"],[">2M"],[">5M"]], "one_time_keyboard": true,"resize_keyboard":true}';
+	$parameters["reply_markup"] = '{ "keyboard": [["<1M"],[">1.5M"],[">2M"],[">5M"]], "one_time_keyboard": true,"resize_keyboard":true}';
 }
 elseif($text==$secondAnswerFake1 || $text==$secondAnswerFake2 || $text==$secondAnswerFake3)
 {
 	$response = "Putroppo no,riproviamo..Secondo te quanti Mi Piace ha la pagina Vodafone su Facebook?";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
 	$parameters["method"] = "sendMessage";
-	$parameters["reply_markup"] = '{ "keyboard": [[">1.5M"],["<1M"],[">2M"],[">5M"]], "one_time_keyboard": true,"resize_keyboard":true}';
+	$parameters["reply_markup"] = '{ "keyboard": [["<1M"],[">1.5M"],[">2M"],[">5M"]], "one_time_keyboard": true,"resize_keyboard":true}';
 }
 elseif($text==strtolower($secondAnswerReal))
 {          
@@ -171,10 +171,17 @@ elseif( substr($text, 0, 1) === "#")
 		$formato=$date->format("d-m-Y H:i");
 		$rispostatuitti= $rispostatuitti . "-Utente: @" . $t->user->screen_name ."\n-Data: " . $formato . "\n-Tweet: " . $t->text . "\n\n";
 	 }
-	 $response ="Ecco alcuni tweet della parola " .$text . " sono:\n" . $rispostatuitti. "\nChiudiamo il nostro percorso con una sentment analysis su uno dei seguenti hot-topic:";
+	 $response ="Ecco alcuni tweet della parola " .$text . " sono:\n" . $rispostatuitti. "\n";
         $parameters = array('chat_id' => $chatId, "text" => $response,'disable_web_page_preview' => true,'resize_keyboard' => true);
 	$parameters["method"] = "sendMessage";
+	$parameters["reply_markup"] = '{ "keyboard": [["Continua"]], "one_time_keyboard": true}';
+}
+elseif ($text == "continua"){
+	$response ="Chiudiamo il nostro percorso con una sentment analysis su uno dei seguenti hot-topic:";
+	$parameters = array('chat_id' => $chatId, "text" => $response,'disable_web_page_preview' => true,'resize_keyboard' => true);
+	$parameters["method"] = "sendMessage";
 	$parameters["reply_markup"] = '{ "keyboard": [["referendum italy"],["donaldtrump"],["matteorenzi"],["vodafone"]], "one_time_keyboard": true}';
+
 }
 elseif($text=="referendum italy" || $text=="vodafone" || $text=="donaldtrump" || $text=="matteorenzi")
 {
