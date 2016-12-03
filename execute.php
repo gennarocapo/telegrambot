@@ -33,7 +33,7 @@ $secondAnswerFake1 = "<1m";
 $secondAnswerFake2 = ">2m";
 $secondAnswerFake3 = ">5m";
 $sentimentParola= "ReferendumItaly";
-if($text=="ciao" || $text=="hey" || $text=="cia" || $text=="hello" || $text=="hi" || $text=="no" || $text=="ricomincia" || $text=="start" )
+if((strpos($text, "/start") === 0 || $text=="ciao" || $text=="hey" || $text=="cia" || $text=="hello" || $text=="hi" || $text=="no" || $text=="ricomincia")
 {
 	$response = "Ciao $firstname, benvenuto! Sei pronto per partire con il percorso digitale? ";
 	$parameters = array('chat_id' => $chatId, "text" => $response);
